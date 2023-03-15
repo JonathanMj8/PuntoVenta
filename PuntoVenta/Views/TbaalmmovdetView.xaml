@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             Visual="Material"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="PuntoVenta.Views.TbaalmmovdetView">
+
+    <ScrollView Orientation="Both">
+        <StackLayout Padding="5" BackgroundColor="White">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <inputLayout:SfTextInputLayout 
+                        Hint="Código" Grid.Row="0" Grid.Column="0"
+                        FocusedColor="Navy"
+                        ContainerType="Outlined">
+                        <Entry Placeholder="Ingrese un código" Grid.Row="0" Grid.Column="0"/>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout 
+                         Hint="Nombre" Grid.Row="0" Grid.Column="1"
+                        FocusedColor="Navy"
+                         ContainerType="Outlined">
+                        <Entry Placeholder="Ingrese un nombre" Grid.Row="0" Grid.Column="1"/>
+                    </inputLayout:SfTextInputLayout>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" /> 
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <inputLayout:SfTextInputLayout 
+                        Hint="Cantidad" Grid.Row="1" Grid.Column="0" 
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                        <Entry  Grid.Row="1" Grid.Column="0"/>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout 
+                        Hint="Costo" Grid.Row="1" Grid.Column="1" 
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                        <Entry Grid.Row="1" Grid.Column="1"/>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout 
+                        Hint="Importe" Grid.Row="1" Grid.Column="2" 
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                        <Entry Grid.Row="1" Grid.Column="2"/>
+                    </inputLayout:SfTextInputLayout>
+                    <buttons:SfButton VerticalOptions="End" HorizontalOptions="End" CornerRadius="50" ShowIcon="True" ImageAlignment="End" BackgroundColor="Transparent" Command="{Binding NavigationAgregarCommand}" >
+                        <buttons:SfButton.Image>
+                            <Image Source="https://i.postimg.cc/vTKtXjp3/boton-agregar.png" Visual="Material" />
+                        </buttons:SfButton.Image>
+                    </buttons:SfButton>
+                </Grid>
+            </StackLayout>
+            <Frame BackgroundColor="Navy" Padding="0" BorderColor="DarkBlue" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"  />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="IDALMMOV" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="IDPRODUCTO" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="CANTIDAD" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="2" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="COSTO" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="3" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="IMPORTE" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="4" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="LOTE" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="5" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="IDLOTE" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="6" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="ANTIBIOTICO" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="7" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="UMEDIDA" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="8" FontSize="Micro"/>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="KIT" VerticalOptions="Center" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="9" FontSize="Micro"/>
+
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="8" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="1"  Grid.Row="0" Grid.Column="9" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                </Grid>
+            </Frame>
+            <syncfusion:SfListView ItemsSource="{Binding Allmmmovdet}" AllowSwiping="True">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"  />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Margin="10,0,10,0" Text="{Binding IDALMMOV}" Grid.Column="0"  TextColor="Black"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Micro"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding IDPRODUCTO}" Grid.Column="1" TextColor="Black"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="Micro"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding CANTIDAD}" Grid.Column="2" TextColor="Black"   HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding COSTO}" Grid.Column="3" TextColor="Black" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding IMPORTE}" Grid.Column="4" TextColor="Black"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding LOTE}" Grid.Column="5" TextColor="Black"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding IDLOTE}" Grid.Column="6" TextColor="Black"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding ANTIBIOTICO}" Grid.Column="7" TextColor="Black"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding UMEDIDA}" Grid.Column="8" TextColor="Black"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+                                    <Label Margin="10,0,10,0" Text="{Binding KIT}" Grid.Column="9" TextColor="Black"  HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Medium"/>
+
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="8" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="DarkGray" WidthRequest="1" Grid.Column="9" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+         </StackLayout>
+    </ScrollView>
+ </ContentPage>

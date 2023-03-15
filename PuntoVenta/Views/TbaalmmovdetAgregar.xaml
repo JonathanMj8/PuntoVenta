@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="PuntoVenta.Views.TbaalmmovdetAgregar">
+    <ScrollView Orientation="Both">
+        <StackLayout Padding="5" BackgroundColor="White">
+            <Frame>
+                <Label Text="Registro" TextColor="Black" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                       FontSize="Medium" FontAttributes="Bold"/>
+            </Frame>
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                 <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/> 
+                        </Grid.ColumnDefinitions>
+
+                        <inputLayout:SfTextInputLayout Hint="IDALMMOV" Grid.Row="0" Grid.Column="0" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="0" Grid.Column="0" Text="{Binding IDALMMOV}"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout  Hint="IDPRODUCTO" Grid.Row="0" Grid.Column="1"
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding IDPRODUCTO}"/>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout Hint="CANTIDAD" Grid.Row="1" Grid.Column="0" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="1" Grid.Column="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="COSTO" Grid.Row="1" Grid.Column="1" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="1" Grid.Column="1"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="IMPORTE" Grid.Row="1" Grid.Column="2" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry  Grid.Row="1" Grid.Column="2"/>
+                        </inputLayout:SfTextInputLayout>
+                        
+                        <inputLayout:SfTextInputLayout Hint="SUBTOTAL" Grid.Row="2" Grid.Column="0" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="2" Grid.Column="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="TOTALIVA" Grid.Row="2" Grid.Column="1" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="2" Grid.Column="1"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="IVA" Grid.Row="2" Grid.Column="2" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="3" Grid.Column="2"/>
+                        </inputLayout:SfTextInputLayout>
+                        
+                        <inputLayout:SfTextInputLayout Hint="LOTE" Grid.Row="3" Grid.Column="0" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="3" Grid.Column="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="FECHACAD" Grid.Row="3" Grid.Column="1" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <DatePicker Grid.Row="3" Grid.Column="1"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="IDLOTE" Grid.Row="3" Grid.Column="2" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="3" Grid.Column="2"/>
+                        </inputLayout:SfTextInputLayout>
+                        
+                        <inputLayout:SfTextInputLayout Hint="ANTIBIOTICO" Grid.Row="4" Grid.Column="0" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="4" Grid.Column="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="UMEDIDA" Grid.Row="4" Grid.Column="1" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="4" Grid.Column="1"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="KIT" Grid.Row="4" Grid.Column="2" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="4" Grid.Column="2"/>
+                        </inputLayout:SfTextInputLayout>
+                        
+                        <inputLayout:SfTextInputLayout Hint="EXISTENCIA" Grid.Row="5" Grid.Column="0"
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="5" Grid.Column="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="FALTANTE" Grid.Row="5" Grid.Column="1" 
+                            ContainerType="Outlined"
+                            FocusedColor="Navy">
+                            <Entry Grid.Row="5" Grid.Column="1"/>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout 
+                        Hint="SOBRANTE" Grid.Row="5" Grid.Column="2" 
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                            <Entry Grid.Row="5" Grid.Column="2"/>
+                        </inputLayout:SfTextInputLayout>
+                        
+                        <inputLayout:SfTextInputLayout 
+                        Hint="IEPS" Grid.Row="6" Grid.Column="0" 
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                            <Entry Grid.Row="6" Grid.Column="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout 
+                        Hint="TOTALIESPS" Grid.Row="6" Grid.Column="1"
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                            <Entry Grid.Row="6" Grid.Column="1"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout 
+                        Hint="COSTOCALC" Grid.Row="6" Grid.Column="2" 
+                        ContainerType="Outlined"
+                        FocusedColor="Navy">
+                            <Entry Grid.Row="6" Grid.Column="2"/>
+                        </inputLayout:SfTextInputLayout>
+                    </Grid>
+                    <button:SfButton x:Name="Guardar" Text="Guardar" TextColor = "White" BackgroundColor="Navy" Command="{Binding GuardarCommand }">
+                    </button:SfButton>
+                </StackLayout>
+             </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

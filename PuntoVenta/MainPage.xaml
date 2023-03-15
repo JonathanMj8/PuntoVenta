@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:PuntoVenta.ViewModel" x:DataType="viewmodel:MainpageVM"
+             x:Class="PuntoVenta.MainPage">
+    <ScrollView>
+
+        <StackLayout Orientation="Vertical" Padding="10">
+            <Button Text="tballmov" x:Name="tbaalmmov" 
+                    Command="{Binding NavigationPage2Command}"
+                    />
+            
+
+            <StackLayout Padding="0">
+                <Button Text="Insertar Existencia" Clicked="Button_ClickedAsync" TextColor="White" CornerRadius="20" BackgroundColor="DodgerBlue" />
+                <Button Text="Getall" x:Name="getExistenciaAllBtn" Clicked="getExistenciaBtn_Clicked" TextColor="White" CornerRadius="20" BackgroundColor="DodgerBlue" />
+                <Button x:Name="btnExistenciaGet" Text="GetExistencia" Clicked="btnExistenciaGet_Clicked" TextColor="White" CornerRadius="20" BackgroundColor="DodgerBlue" />
+                <Button Text="Delete Existencia" x:Name="deleteExistenciaBtn" Clicked="deleteExistenciaBtn_Clicked" TextColor="White" CornerRadius="20" BackgroundColor="DodgerBlue" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Insert Abono" x:Name="insertAbonoBtn" Clicked="insertAbonoBtn_Clicked" BackgroundColor="SkyBlue" TextColor="White" CornerRadius="20" />
+                <Button Text="Get All Abono" x:Name="getAllAbonoBtn" Clicked="getAllAbonoBtn_Clicked" BackgroundColor="SkyBlue" TextColor="White" CornerRadius="20" />
+                <Button Text="Get Id Abono" x:Name="getIdAbonoBtn" Clicked="getIdAbonoBtn_Clicked" BackgroundColor="SkyBlue" TextColor="White" CornerRadius="20" />
+                <Button Text="Delete Abono" x:Name="deleteAbonoBtn" Clicked="deleteAbonoBtn_Clicked" BackgroundColor="SkyBlue" TextColor="White" CornerRadius="20" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Insert Almmov" x:Name="insertAlmmov"  Clicked="insertAlmmov_Clicked" BackgroundColor="DarkGreen" TextColor="White" CornerRadius="20" />
+                <Button Text="Get All Almmov" x:Name="getAlmmovAll" Clicked="getAlmmovAll_Clicked" BackgroundColor="DarkGreen" TextColor="White" CornerRadius="20" />
+                <Button Text="Get Id Almmov" x:Name="getAlmmovId" Clicked="getAlmmovId_Clicked" BackgroundColor="DarkGreen" TextColor="White" CornerRadius="20" />
+                <Button Text="Delete Almmov" x:Name="deleteAlmmov" Clicked="deleteAlmmov_Clicked" BackgroundColor="DarkGreen" TextColor="White" CornerRadius="20" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Insert Almmovdet"  x:Name="insertAlmmovdet" Clicked="insertAlmmovdet_Clicked"  BackgroundColor="DarkOrange"  TextColor="White" CornerRadius="20" />
+                <Button Text="Get All Almmovdet" x:Name="getAlmmovdetAll" Clicked="getAlmmovdetAll_Clicked"  BackgroundColor="DarkOrange" TextColor="White" CornerRadius="20" />
+                <Button Text="Get Id Almmovdet"  x:Name="getAlmmovdetId"  Clicked="getAlmmovdetId_Clicked"  BackgroundColor="DarkOrange" TextColor="White" CornerRadius="20" />
+                <Button Text="Delete Almmovdet"  x:Name="deleteAlmmovdet" Clicked="deleteAlmmovdet_Clicked"  BackgroundColor="DarkOrange" TextColor="White" CornerRadius="20" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Insert Sucursal"  x:Name="insertSucursal" Clicked="insertSucursal_Clicked"  BackgroundColor="Purple"  TextColor="White" CornerRadius="20" />
+                <Button Text="Get All Sucursal" x:Name="getAllSucursalAll" Clicked="getAllSucursalAll_Clicked"  BackgroundColor="Purple" TextColor="White" CornerRadius="20" />
+                <Button Text="Get Id Sucursal"  x:Name="getSucursalId"  Clicked="getSucursalId_Clicked" BackgroundColor="Purple" TextColor="White" CornerRadius="20" />
+                <Button Text="Delete Sucursal"  x:Name="deleteSucursal" Clicked="deleteSucursal_Clicked"  BackgroundColor="Purple" TextColor="White" CornerRadius="20" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Insert MotivomovMotivomov"  x:Name="insertMotivomov" Clicked="insertMotivomov_Clicked"  BackgroundColor="YellowGreen"  TextColor="White" CornerRadius="20" />
+                <Button Text="Get All Motivomov" x:Name="getAllMotivomovAll" Clicked="getAllMotivomovAll_Clicked"  BackgroundColor="YellowGreen" TextColor="White" CornerRadius="20" />
+                <Button Text="Get Id Motivomov"  x:Name="getMotivomovId"  Clicked="getMotivomovId_Clicked" BackgroundColor="YellowGreen" TextColor="White" CornerRadius="20" />
+                <Button Text="Delete Motivomov"  x:Name="deleteMotivomov" Clicked="deleteMotivomov_Clicked"  BackgroundColor="YellowGreen" TextColor="White" CornerRadius="20" />
+            </StackLayout>
+            <StackLayout>
+                <Button Text="Insert Estatus"  x:Name="insertEstatus" Clicked="insertEstatus_Clicked"  BackgroundColor="DarkRed"  TextColor="White" CornerRadius="20" />
+                <Button Text="Get All  Estatus" x:Name="getEstatusAll" Clicked="getEstatusAll_Clicked"  BackgroundColor="DarkRed" TextColor="White" CornerRadius="20" />
+                <Button Text="Get Id  Estatus"  x:Name="getEstatusId"  Clicked="getEstatusId_Clicked" BackgroundColor="DarkRed" TextColor="White" CornerRadius="20" />
+                <Button Text="Delete  Estatus"  x:Name="deleteEstatus" Clicked="deleteEstatus_Clicked"  BackgroundColor="DarkRed" TextColor="White" CornerRadius="20" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
