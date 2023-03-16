@@ -12,7 +12,31 @@ namespace PuntoVenta.ViewModel
     public class TbaalmmovMV : Baseviewmodel
     {
         #region VARIABLES
+        private Command mostrarfiltros;
+        private Command cerrarfiltros;
+
         public ObservableCollection<TBAALMMOV> Allmmmov { get; set; }
+         #endregion
+
+        #region COMMANDOS
+        //COMANDO PARA EL BOTON DE NEXTPAGE
+        public ICommand NavigationPage3Command => new Command(async () => await NavigationPage3());
+        public ICommand NavigationAgregarCommand => new Command(async () => await AgregarCommand());
+        public Command TapGestureRecognizer_MostrarFiltrosAvanzados
+        {
+            get
+            {
+                return this.mostrarfiltros ?? (this.mostrarfiltros = new Command(this.MostrarFiltrosAvanzados));
+            }
+        }
+        public Command TapGestureRecognizer_CerrarFiltrosAvanzados
+        {
+            get
+            {
+                return this.cerrarfiltros ?? (this.cerrarfiltros = new Command(this.MostrarFiltrosAvanzados));
+            }
+        }
+
         #endregion
 
         #region CONSTRUCTOR
@@ -25,6 +49,18 @@ namespace PuntoVenta.ViewModel
         #endregion
 
         #region METODOS
+        private void MostrarFiltrosAvanzados(object obj)
+        {
+            var FiltrosAvanzados = obj as StackLayout;
+            if(FiltrosAvanzados != null)
+            {
+                FiltrosAvanzados.IsVisible = false;
+            }
+        }
+
+        /// <summary>
+        /// Gets the command that is executed when the settings option is clicked.
+        /// </summary>
         //NAVEGACION DE PAGINAS
         public async Task NavigationPage3()
         {
@@ -38,7 +74,6 @@ namespace PuntoVenta.ViewModel
         {
             await Navigation.PushAsync(new TbaalmmovdetAgregar());
         }
-
         #endregion
 
         #region GUARDAR
@@ -107,12 +142,8 @@ namespace PuntoVenta.ViewModel
             return result;
         }
         #endregion
-        #region COMMANDOS
-        //COMANDO PARA EL BOTON DE NEXTPAGE
-        public ICommand NavigationPage3Command => new Command(async () => await NavigationPage3());
-        public ICommand NavigationAgregarCommand => new Command(async () => await AgregarCommand());
 
-        #endregion
+        
 
     }
 }

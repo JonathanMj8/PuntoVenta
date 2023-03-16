@@ -4,9 +4,9 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              x:Class="PuntoVenta.Views.TbaalmmovPage"
              xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
-             Title="Movimientos"
              xmlns:behaviour="clr-namespace:PuntoVenta.Behaviors" 
-             xmlns:controls="clr-namespace:PuntoVenta.Controls">
+             xmlns:controls="clr-namespace:PuntoVenta.Controls" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" >
 
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
@@ -14,7 +14,7 @@
                 <StackLayout HorizontalOptions="Start" WidthRequest="40" HeightRequest="20">
                     <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                         <StackLayout.GestureRecognizers>
-
+                            <TapGestureRecognizer />
                         </StackLayout.GestureRecognizers>
 
                         <Label Text="&#xf30a;" FontSize="30" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
@@ -102,8 +102,8 @@
                                         FontSize="15"
                                         Placeholder="Busca por Folio, Serie o Cliente"
                                         Style="{StaticResource BorderlessEntryStyle}"
-                                        TextChanged="BusquedaArticuloText_TextChanged"
-                                        Text="{Binding CadenaBusqueda, Mode=TwoWay}">
+                                         Text="{Binding CadenaBusqueda, Mode=TwoWay}">
+                                        
                                         <Entry.Behaviors>
                                             <behaviour:EntryLineValidationBehaviour IsValid="True" />
                                         </Entry.Behaviors>
@@ -112,9 +112,9 @@
 
                                 <StackLayout HorizontalOptions="Fill" Grid.Row="0" Grid.Column="1" VerticalOptions="Fill">
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_MostrarFiltrosAvanzados"/>
+                                        <TapGestureRecognizer Command="{Binding TapGestureRecognizer_MostrarFiltrosAvanzados}" ></TapGestureRecognizer>
                                     </StackLayout.GestureRecognizers>
-                                     <Image Source="filtros.png" Aspect="AspectFit" HeightRequest="21"  Margin="0,-6,0,0"       VerticalOptions="CenterAndExpand"/>
+                                    <Image  Source="filtros.png" Aspect="AspectFit" HeightRequest="21"  Margin="0,-6,0,0" VerticalOptions="CenterAndExpand"/>
                                 </StackLayout>
                             </Grid>
                         </StackLayout>
@@ -371,7 +371,8 @@
                          BackgroundColor   ="#03479b"/>
                 </Grid>
             </StackLayout>
-            <!--CONTENEDOR FILTROS AVANZADOS
+            <!--CONTENEDOR FILTROS AVANZADOS -->
+            
             <StackLayout IsVisible="{Binding MostrarFiltrosAvanzados}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                 <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
                     <Frame BackgroundColor="#0250b2" Opacity=".7"></Frame>
@@ -405,6 +406,7 @@
                                             </StackLayout>
                                             <StackLayout HorizontalOptions="End">
                                                 <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding TapGestureRecognizer_CerrarFiltrosAvanzados}"/>
                                                 </StackLayout.GestureRecognizers>
                                                 <Label
                                                     IsVisible="True"
@@ -422,8 +424,7 @@
 
                                         <ScrollView>
                                             <StackLayout>
-
-                                                FECHAS DE PEDIDO
+                                                <!--FECHAS DE PEDIDO --> 
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
@@ -454,11 +455,9 @@
                                                     Margin="0,0,0,0"
                                                     FontSize="14"
                                                     Style="{StaticResource SimpleLabelStyle}"
-                                                    TextColor="Black"/>
-
-
+                                                    TextColor="Black"/> 
                                                                 <border:SfBorder
-                                                                Margin="0,-4,0,0"
+                                                                    Margin="0,-4,0,0"
                                                                 Padding="-9"
                                                                 BorderColor="#03479b"
                                                                 VerticalOptions="Start">
@@ -480,8 +479,7 @@
                                                     FontSize="14"
                                                     Style="{StaticResource SimpleLabelStyle}"
                                                     TextColor="Black"/>
-
-
+  
                                                                 <border:SfBorder
                                                                 Margin="0,-4,0,0"
                                                                 Padding="-9"
@@ -500,7 +498,7 @@
 
                                                     </StackLayout>
                                                 </StackLayout>
-                                                FECHAS DE ENTREGA
+                                                <!--FECHAS DE ENTREGA-->
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                     IsVisible="True"
@@ -523,7 +521,7 @@
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="50" />
                                                             </Grid.RowDefinitions>
-
+                                                            
                                                             <StackLayout Grid.Column="0" Grid.Row="0" Margin="0,0,10,0">
                                                                 <Label
                                                             IsVisible="True"
@@ -532,23 +530,17 @@
                                                             FontSize="14"
                                                             Style="{StaticResource SimpleLabelStyle}"
                                                             TextColor="Black"/>
-
-
                                                                 <border:SfBorder
                                                                 Margin="0,-4,0,0"
                                                                 Padding="-9"
                                                                 BorderColor="#03479b"
                                                                 VerticalOptions="Start">
-
                                                                     <DatePicker x:Name="FechaEntregaInicioDatePicker"
                                                                 Format="MM/dd/yyyy"
                                                                 Date="{Binding FechaEntregaInicio, Mode=TwoWay}"        
                                                                 HorizontalOptions="Center"/>
-
                                                                 </border:SfBorder>
-
                                                             </StackLayout>
-
                                                             <StackLayout Grid.Column="1" Grid.Row="0" Margin="10,0,0,0">
                                                                 <Label
                                                             IsVisible="True"
@@ -557,9 +549,7 @@
                                                             FontSize="14"
                                                             Style="{StaticResource SimpleLabelStyle}"
                                                             TextColor="Black"/>
-
-
-                                                                <border:SfBorder
+                                                                 <border:SfBorder
                                                                 Margin="0,-4,0,0"
                                                                 Padding="-9"
                                                                 BorderColor="#03479b"
@@ -568,16 +558,12 @@
                                                                     <DatePicker x:Name="FechaEntregaFinDatePicker"
                                                                 Format="MM/dd/yyyy"
                                                                 HorizontalOptions="Center"/>
-
-                                                                </border:SfBorder>
-
-                                                            </StackLayout>
-
-                                                        </Grid>
-
-                                                    </StackLayout>
+                                                                 </border:SfBorder>
+                                                             </StackLayout>
+                                                         </Grid>
+                                                     </StackLayout>
                                                 </StackLayout>
-                                                ESTATUS 
+                                               <!-- ESTATUS -->
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
@@ -613,7 +599,7 @@
                                                         </border:SfBorder>
                                                     </StackLayout>
                                                 </StackLayout>
-                                                CLIENTE
+                                                <!--CLIENTE--> 
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
@@ -649,7 +635,7 @@
                                                         </border:SfBorder>
                                                     </StackLayout>
                                                 </StackLayout>
-                                                METODO DE PAGO
+                                                <!--METODO DE PAGO-->
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
@@ -684,7 +670,7 @@
                                                         </border:SfBorder>
                                                     </StackLayout>
                                                 </StackLayout>
-                                                VENDEDOR-
+                                                <!--VENDEDOR-->
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
@@ -714,16 +700,15 @@
                                                         DisplayMemberPath="NOMBRE"  
                                                         SelectedValuePath="IDUSUARIO" 
                                                         SelectedValue="{Binding IdVendedor, Mode=TwoWay}">
-
-                                                            </combobox:SfComboBox>
-
+ 
+                                                            </combobox:SfComboBox> 
                                                         </border:SfBorder>
                                                     </StackLayout>
                                                 </StackLayout>
 
                                             </StackLayout>
                                         </ScrollView>
-          BOTONES
+                                        <!--BOTONES-->
                                         <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="12,20,12,0">
                                             <StackLayout HorizontalOptions="Start">
                                                 <StackLayout.GestureRecognizers>
@@ -748,20 +733,14 @@
                                                     Style="{StaticResource SimpleLabelStyle}"
                                                     />
                                             </StackLayout>
-                                        </StackLayout>
-
-                                    </StackLayout>
-
-                                </Frame>
-           
+                                        </StackLayout> 
+                                    </StackLayout> 
+                                </Frame> 
                             </StackLayout>
-                        </StackLayout>
-
-                    </StackLayout>
-
+                        </StackLayout> 
+                    </StackLayout> 
                 </Grid>
-            </StackLayout>
- -->
+            </StackLayout> 
             <!--IS BUSY LAYOUT 
             <StackLayout x:Name="overLay" Opacity="0.7"  Background="black" AbsoluteLayout.LayoutBounds="2, 2, 1, 1" Margin="-20,0,-20,-20" AbsoluteLayout.LayoutFlags="All" >
                 <StackLayout  HorizontalOptions="CenterAndExpand"

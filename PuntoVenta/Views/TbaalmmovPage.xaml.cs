@@ -20,17 +20,7 @@ namespace PuntoVenta.Views
         {
             InitializeComponent();
             BindingContext = new TbaalmmovMV(Navigation);
-            
         }
-
-        private void BusquedaArticuloText_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TapGestureRecognizer_MostrarFiltrosAvanzados(object sender, EventArgs e)
-        {
-
-        }
+ 
     }
 }

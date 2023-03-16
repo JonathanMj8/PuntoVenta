@@ -10,6 +10,7 @@ namespace PuntoVenta.ViewModel
 {
     public class Baseviewmodel : INotifyPropertyChanged
     {
+        
         public INavigation Navigation;
 
         public event PropertyChangedEventHandler PropertyChanged;
