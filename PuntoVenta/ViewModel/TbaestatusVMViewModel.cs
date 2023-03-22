@@ -8,13 +8,13 @@ using Xamarin.Forms;
 
 namespace PuntoVenta.ViewModel
 {
-    public class TbaestatusVM : Baseviewmodel
+    public class TbaestatusVMViewModel : Baseviewmodel
     {
         #region VARIABLES
         public ObservableCollection<TBAESTATUS> Allestatus { get; set; }
         #endregion
         #region CONSTRUCTOR
-        public TbaestatusVM(INavigation navigation)
+        public TbaestatusVMViewModel(INavigation navigation)
         {
             Navigation = navigation;
             AddTbaestatus();

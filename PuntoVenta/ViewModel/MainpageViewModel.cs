@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace PuntoVenta.ViewModel
 {
-    public class MainpageVM : Baseviewmodel
+    public class MainpageViewModel : Baseviewmodel
     {
 
         #region VARIABLE
@@ -17,7 +17,7 @@ namespace PuntoVenta.ViewModel
         #endregion
 
         #region CONSTRUCTOR
-        public MainpageVM(INavigation navigation)
+        public MainpageViewModel(INavigation navigation)
         {
             Navigation = navigation;
         }

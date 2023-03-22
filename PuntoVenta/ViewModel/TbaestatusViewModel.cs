@@ -10,13 +10,13 @@ using System.Collections.ObjectModel;
 
 namespace PuntoVenta.ViewModel
 {
-    public class Tbaestatus : Baseviewmodel
+    public class TbaestatusViewModel : Baseviewmodel
     {
         #region VARIABLES
         public ObservableCollection<TBAESTATUS> Allestatus { get; set; }
         #endregion
         #region CONSTRUCTOR
-        public Tbaestatus(INavigation navigation)
+        public TbaestatusViewModel(INavigation navigation)
         {
             Navigation = navigation;
             _ = AddTbaestatus();

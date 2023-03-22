@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PuntoVenta.ViewModel
 {
-    public class Tbasucursal
+    public class TbasucursalViewModel
     {
         public static async Task<int> GuardarSucursal()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PuntoVenta.ViewModel
 {
-    public class Tbaabono
+    public class TbaabonoViewModel
     {
         public static async Task<int> GuardarTaabono()
         {

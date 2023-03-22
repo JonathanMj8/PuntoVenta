@@ -16,7 +16,7 @@ namespace PuntoVenta.Views
         public TbaalmmovdetView()
         {
             InitializeComponent();
-            BindingContext = new Tbaalmmovdet(Navigation);
+            BindingContext = new TbaalmmovdetViewModel(Navigation);
 
         }
         //private async void LoadTbaalmmovdet()

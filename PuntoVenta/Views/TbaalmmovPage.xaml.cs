@@ -19,7 +19,7 @@ namespace PuntoVenta.Views
         public TbaalmmovPage()
         {
             InitializeComponent();
-            BindingContext = new TbaalmmovMV(Navigation);
+            BindingContext = new TbaalmmovViewModel(Navigation);
         }
  
     }

@@ -11,38 +11,38 @@ namespace PuntoVenta
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainpageVM(Navigation);
+            BindingContext = new MainpageViewModel(Navigation);
             
         }
 
         #region TBAABONO
         private void insertAbonoBtn_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaabono.GuardarTaabono();
+            _ = TbaabonoViewModel.GuardarTaabono();
         }
         private void getAllAbonoBtn_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaabono.GetAbonoAll();
+            _ = TbaabonoViewModel.GetAbonoAll();
         }
         private void getIdAbonoBtn_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaabono.GetAbonoId();
+            _ = TbaabonoViewModel.GetAbonoId();
         }
         private void deleteAbonoBtn_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaabono.DeleteAbonoId();
+            _ = TbaabonoViewModel.DeleteAbonoId();
         }
 
         #endregion
         #region TBAALMMOV
         private void insertAlmmov_Clicked(object sender, EventArgs e)
         {
-             _= TbaalmmovMV.GuardarAllmmov();
+             _= TbaalmmovViewModel.GuardarAllmmov();
         }
 
         private void getAlmmovAll_Clicked(object sender, EventArgs e)
         {
-           _ = TbaalmmovMV.GetTbaalmmovAll();
+           _ = TbaalmmovViewModel.GetTbaalmmovAll();
         }
 
         private void getAlmmovId_Clicked(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace PuntoVenta
 
         private void deleteAlmmov_Clicked(object sender, EventArgs e)
         {
-            _ = TbaalmmovMV.DeleteTbaalmmovId();
+            _ = TbaalmmovViewModel.DeleteTbaalmmovId();
         }
         #endregion
         #region TBAALMMOVDET
@@ -64,92 +64,92 @@ namespace PuntoVenta
 
         private void getAlmmovdetAll_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaalmmovdet.GetTbaalmmovdetAll();
+            _ = TbaalmmovdetViewModel.GetTbaalmmovdetAll();
         }
 
         private void getAlmmovdetId_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaalmmovdet.GetIdTbaalmmovdet();
+            _ = TbaalmmovdetViewModel.GetIdTbaalmmovdet();
         }
 
         private void deleteAlmmovdet_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaalmmovdet.DeleteTbaalmmovdetId();
+            _ = TbaalmmovdetViewModel.DeleteTbaalmmovdetId();
         }
         #endregion
         #region TBAEXISTECIA
         private void Button_ClickedAsync(object sender, EventArgs e)
         {
-            _ = Tbaexistencia.GuardarExistencia();
+            _ = TbaexistenciaViewModel.GuardarExistencia();
         }
         private void getExistenciaBtn_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaexistencia.GetExistenciaAll();
+            _ = TbaexistenciaViewModel.GetExistenciaAll();
         }
         private void btnExistenciaGet_Clicked(object sender, EventArgs e)
         {
-           _ = Tbaexistencia.GetExistenciaId();
+           _ = TbaexistenciaViewModel.GetExistenciaId();
         }
 
         private void deleteExistenciaBtn_Clicked(object sender, EventArgs e)
         {
-           _ = Tbaexistencia.DeleteExistenciaId();
+           _ = TbaexistenciaViewModel.DeleteExistenciaId();
         }
         #endregion
 
         #region TBASUCURSAL
         private void insertSucursal_Clicked(object sender, EventArgs e)
         {
-            _ = Tbasucursal.GuardarSucursal();
+            _ = TbasucursalViewModel.GuardarSucursal();
         }
 
         private void getAllSucursalAll_Clicked(object sender, EventArgs e)
         {
-            _ = Tbasucursal.GetSucursalAll();
+            _ = TbasucursalViewModel.GetSucursalAll();
         }
 
         private void getSucursalId_Clicked(object sender, EventArgs e)
         {
-            _ = Tbasucursal.GetSucursalId();
+            _ = TbasucursalViewModel.GetSucursalId();
         }
 
         private void deleteSucursal_Clicked(object sender, EventArgs e)
         {
-            _ = Tbasucursal.DeleteSucursalId();
+            _ = TbasucursalViewModel.DeleteSucursalId();
         }
         #endregion
 
         #region TBAESTATUS
         private void insertEstatus_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaestatus.Guardarestatus();
+            _ = TbaestatusViewModel.Guardarestatus();
         }
 
         private void getEstatusAll_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaestatus.GetAllEstatus();
+            _ = TbaestatusViewModel.GetAllEstatus();
         }
 
         private void getEstatusId_Clicked(object sender, EventArgs e)
         {
-            _ = Tbaestatus.GetAllEstatusId();
+            _ = TbaestatusViewModel.GetAllEstatusId();
         }
 
         private void deleteEstatus_Clicked(object sender, EventArgs e)
         {
-            _= Tbaestatus.DeleteEstatusId();
+            _= TbaestatusViewModel.DeleteEstatusId();
         }
         #endregion
 
         #region TBAMOTIVOMOV
         private void insertMotivomov_Clicked(object sender, EventArgs e)
         {
-            _ = Tbamotivomov.GuardarMotivomov();
+            _ = TbamotivomovViewModel.GuardarMotivomov();
         }
 
         private void getAllMotivomovAll_Clicked(object sender, EventArgs e)
         {
-            _ = Tbamotivomov.GetMotivomovAll();
+            _ = TbamotivomovViewModel.GetMotivomovAll();
         }
 
         private void getMotivomovId_Clicked(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace PuntoVenta
 
         private void deleteMotivomov_Clicked(object sender, EventArgs e)
         {
-            _ = Tbamotivomov.DeleteMotivomovId();
+            _ = TbamotivomovViewModel.DeleteMotivomovId();
         }
         #endregion
 

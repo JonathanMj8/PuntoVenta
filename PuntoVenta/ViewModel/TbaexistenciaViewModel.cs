@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PuntoVenta.ViewModel
 {
-    public class Tbaexistencia
+    public class TbaexistenciaViewModel
     {
         public static async Task<int> GuardarExistencia()
         {

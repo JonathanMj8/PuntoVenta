@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace PuntoVenta.ViewModel
 {
-    public class Tbaalmmovdet : Baseviewmodel
+    public class TbaalmmovdetViewModel : Baseviewmodel
     {
         #region VARIABLES
         public ObservableCollection<TBAALMMOVDET> Allmmmovdet { get; set; }
@@ -236,7 +236,7 @@ namespace PuntoVenta.ViewModel
 
         #endregion
         #region CONSTRUCTOR
-        public Tbaalmmovdet(INavigation navigation)
+        public TbaalmmovdetViewModel(INavigation navigation)
         {
             Navigation = navigation;
             _ = AddTbaalmmovdetAsync();

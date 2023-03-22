@@ -9,73 +9,57 @@ using Xamarin.Forms;
 
 namespace PuntoVenta.ViewModel
 {
-    public class TbaalmmovMV : Baseviewmodel
+    public class TbaalmmovViewModel : Baseviewmodel
     {
         #region VARIABLES
-        private Command mostrarfiltros;
-        private Command cerrarfiltros;
-
         public ObservableCollection<TBAALMMOV> Allmmmov { get; set; }
-         #endregion
-
-        #region COMMANDOS
-        //COMANDO PARA EL BOTON DE NEXTPAGE
-        public ICommand NavigationPage3Command => new Command(async () => await NavigationPage3());
-        public ICommand NavigationAgregarCommand => new Command(async () => await AgregarCommand());
-        public Command TapGestureRecognizer_MostrarFiltrosAvanzados
+        
+        private bool _MostrarFiltrosAvanzados;
+        public bool MostrarFiltrosAvanzados
         {
-            get
+            get { return _MostrarFiltrosAvanzados; }
+            set
             {
-                return this.mostrarfiltros ?? (this.mostrarfiltros = new Command(this.MostrarFiltrosAvanzados));
+                _MostrarFiltrosAvanzados = value;
+                OnPropertyChanged(nameof(MostrarFiltrosAvanzados));
             }
         }
-        public Command TapGestureRecognizer_CerrarFiltrosAvanzados
-        {
-            get
-            {
-                return this.cerrarfiltros ?? (this.cerrarfiltros = new Command(this.MostrarFiltrosAvanzados));
-            }
-        }
-
         #endregion
 
         #region CONSTRUCTOR
-        public TbaalmmovMV(INavigation navigation)
+        public TbaalmmovViewModel(INavigation navigation)
         {
             Navigation = navigation;
             _ = AddTbaalmmovAsync();
+            _mostrarfiltros = new Command(mostrarFiltrosAvanzados);
+            _ocultarfiltros = new Command(CerrarFiltrosAvanzados);
 
         }
         #endregion
 
         #region METODOS
-        private void MostrarFiltrosAvanzados(object obj)
-        {
-            var FiltrosAvanzados = obj as StackLayout;
-            if(FiltrosAvanzados != null)
-            {
-                FiltrosAvanzados.IsVisible = false;
-            }
-        }
-
-        /// <summary>
-        /// Gets the command that is executed when the settings option is clicked.
-        /// </summary>
-        //NAVEGACION DE PAGINAS
-        public async Task NavigationPage3()
-        {
-            await Navigation.PushAsync(new TbaalmmovdetView());
-        }
         public async Task AddTbaalmmovAsync()
         {
             Allmmmov = new ObservableCollection<TBAALMMOV>(await App.Database.GetAll());
+        }
+        public async Task NavigationPage3()
+        {
+            await Navigation.PushAsync(new TbaalmmovdetView());
         }
         public async Task AgregarCommand()
         {
             await Navigation.PushAsync(new TbaalmmovdetAgregar());
         }
+        void mostrarFiltrosAvanzados(object s)
+        {
+            MostrarFiltrosAvanzados = true;
+        }
+        void CerrarFiltrosAvanzados(object s)
+        {
+            MostrarFiltrosAvanzados = false;
+        }
         #endregion
-
+           
         #region GUARDAR
         public static async Task<int> GuardarAllmmov()
         {
@@ -143,7 +127,23 @@ namespace PuntoVenta.ViewModel
         }
         #endregion
 
-        
+        #region COMMANDOS
+
+        //COMANDO PARA EL BOTON DE NEXTPAGE
+        public ICommand NavigationPage3Command => new Command(async () => await NavigationPage3());
+        public ICommand NavigationAgregarCommand => new Command(async () => await AgregarCommand());
+
+        public ICommand _mostrarfiltros;
+        public ICommand TapGestureRecognizer_MostrarFiltrosAvanzados
+        {
+            get { return _mostrarfiltros; }
+        }
+        public ICommand _ocultarfiltros;
+        public ICommand TapGestureRecognizer_CerrarFiltrosAvanzados
+        {
+            get { return _ocultarfiltros; }
+        }
+        #endregion
 
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PuntoVenta.ViewModel
 {
-    public class Tbamotivomov
+    public class TbamotivomovViewModel
     {
         public static async Task<int> GuardarMotivomov()
         {
