@@ -15,7 +15,7 @@ namespace PuntoVenta.Styles
     /// </summary>
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EntryStyles
+    public partial class EntryStyles : ResourceDictionary
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Styles" /> class.

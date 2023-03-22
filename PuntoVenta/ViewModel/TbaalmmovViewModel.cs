@@ -13,7 +13,17 @@ namespace PuntoVenta.ViewModel
     {
         #region VARIABLES
         public ObservableCollection<TBAALMMOV> Allmmmov { get; set; }
-        
+
+        private bool _BtnBackMenuVisible;
+        public bool BtnBackMenuVisible
+        {
+            get { return _BtnBackMenuVisible; }
+            set
+            {
+                _BtnBackMenuVisible = value;
+                OnPropertyChanged(nameof(BtnBackMenuVisible));
+            }
+        }
         private bool _MostrarFiltrosAvanzados;
         public bool MostrarFiltrosAvanzados
         {
@@ -25,6 +35,31 @@ namespace PuntoVenta.ViewModel
             }
         }
         #endregion
+        #region COMMANDOS
+
+        //COMANDO PARA EL BOTON DE NEXTPAGE
+        public ICommand NavigationPage3Command => new Command(async () => await NavigationPage3());
+        public ICommand NavigationAgregarCommand => new Command(async () => await AgregarCommand());
+        public ICommand NuevoPedidoCommand => new Command(async () => await NuevoPedidoCommandAsync());
+
+        public ICommand _ocultarMenu;
+        public ICommand TapGestureRecognizer_OcultarMenu
+        {
+            get { return _ocultarMenu; }
+        }
+
+        public ICommand _mostrarfiltros;
+        public ICommand TapGestureRecognizer_MostrarFiltrosAvanzados
+        {
+            get { return _mostrarfiltros; }
+        }
+
+        public ICommand _ocultarfiltros;
+        public ICommand TapGestureRecognizer_CerrarFiltrosAvanzados
+        {
+            get { return _ocultarfiltros; }
+        }
+        #endregion
 
         #region CONSTRUCTOR
         public TbaalmmovViewModel(INavigation navigation)
@@ -33,7 +68,7 @@ namespace PuntoVenta.ViewModel
             _ = AddTbaalmmovAsync();
             _mostrarfiltros = new Command(mostrarFiltrosAvanzados);
             _ocultarfiltros = new Command(CerrarFiltrosAvanzados);
-
+            _ocultarMenu = new Command(OcultarMenu);
         }
         #endregion
 
@@ -49,6 +84,14 @@ namespace PuntoVenta.ViewModel
         public async Task AgregarCommand()
         {
             await Navigation.PushAsync(new TbaalmmovdetAgregar());
+        }
+        public async Task NuevoPedidoCommandAsync()
+        {
+            await Navigation.PushAsync(new ProductoPedido());
+        }
+        void OcultarMenu(object s)
+        {
+            BtnBackMenuVisible = true;
         }
         void mostrarFiltrosAvanzados(object s)
         {
@@ -127,23 +170,7 @@ namespace PuntoVenta.ViewModel
         }
         #endregion
 
-        #region COMMANDOS
-
-        //COMANDO PARA EL BOTON DE NEXTPAGE
-        public ICommand NavigationPage3Command => new Command(async () => await NavigationPage3());
-        public ICommand NavigationAgregarCommand => new Command(async () => await AgregarCommand());
-
-        public ICommand _mostrarfiltros;
-        public ICommand TapGestureRecognizer_MostrarFiltrosAvanzados
-        {
-            get { return _mostrarfiltros; }
-        }
-        public ICommand _ocultarfiltros;
-        public ICommand TapGestureRecognizer_CerrarFiltrosAvanzados
-        {
-            get { return _ocultarfiltros; }
-        }
-        #endregion
+       
 
     }
 }

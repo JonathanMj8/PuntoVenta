@@ -1,0 +1,2651 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:controls="clr-namespace:PuntoVenta.Controls" 
+             xmlns:behaviour="clr-namespace:PuntoVenta.Behaviors" 
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" 
+             xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+             x:Class="PuntoVenta.Views.Carrito">
+    
+    <Shell.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+            <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="-5,0,0,0">
+                <Label Text="{Binding TextoTitulo}"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                    x:Name="TituloPedidos"
+                   FontSize="20"/>
+            </StackLayout>
+
+
+            <StackLayout HeightRequest="40" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="End" Orientation="Horizontal" Margin="0,0,10,0" IsVisible="{Binding BotonesGuardarVisibles}">
+                <StackLayout WidthRequest="30" HeightRequest="30" HorizontalOptions="StartAndExpand" IsVisible="{Binding BotonesGuardarVisibles}">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_GuardarPedido"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Image Margin="0,0,0,0" Source="guardar.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="40"/>
+                </StackLayout>
+
+                <StackLayout WidthRequest="30" HeightRequest="30"  HorizontalOptions="EndAndExpand" IsVisible="{Binding AfectarVisible}">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_AfectarPedido"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Image Margin="0,0,0,0" Source="afectar.png" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="40"/>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="ContenedorPrinicipalPedido" Background="#eaeaea">
+
+            <!--CONTENEDOR DE LA PANTALLA DEL PEDIDO-->
+            <StackLayout x:Name="ContenedorDatosGenerales" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                <!--STACK PARA LOS DATOS GENERALES DEL PEDIDO-->
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start"  x:Name="ContenedorDatosGeneralesPedido" >
+                    <expander:SfExpander
+                                        x:Name="expander_datos_pedido"
+                                        IsExpanded="{Binding ExpanderPedidos}"
+                                        AnimationDuration="350"
+                                        AnimationEasing="Linear"
+                                        HeaderBackgroundColor="white"
+                                        
+                                        HeaderIconPosition="None">
+                        <expander:SfExpander.Header>
+                            <StackLayout Orientation="Vertical" Spacing="1" Background="white" Padding="16">
+                                <Label HorizontalTextAlignment="Center">
+                                    <Label.FormattedText HorizontalTextAlignment="Center">
+                                        <FormattedString>
+                                            <Span
+                                            x:Name="TituloDatosGenerales"
+                                            FontFamily="Montserrat-Bold"
+                                            FontSize="14"
+                                            LineHeight="0"
+                                            Text="Edita Datos Generales del Pedido"
+                                            TextColor="{DynamicResource Gray-900}"
+                                            />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                            </StackLayout>
+                        </expander:SfExpander.Header>
+
+                        <expander:SfExpander.Content>
+                            <ScrollView x:Name="ScrollDatosGenerales" BackgroundColor="gray"  HorizontalOptions="Center" Orientation="Vertical" HeightRequest="3000">
+                                <StackLayout Padding="10,0,10,0">
+                                    <Grid HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="70" />
+                                        </Grid.RowDefinitions>
+
+                                        <StackLayout Grid.Row="0">
+
+                                            <StackLayout HorizontalOptions="Fill">
+
+                                                <Grid HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="33*" />
+                                                        <ColumnDefinition Width="33*" />
+                                                        <ColumnDefinition Width="33*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="70" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackLayout Grid.Column="0" Grid.Row="0">
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label
+                                                                IsVisible="True"
+                                                                Text="Fecha"
+                                                                Margin="0,0,0,0"
+                                                                FontSize="14"
+                                                                Style="{StaticResource SimpleLabelStyle}"
+                                                                TextColor="Black"/>
+                                                        </StackLayout>
+
+                                                        <border:SfBorder
+                                                            Margin="0,0,0,0"
+                                                            Padding="-2"
+                                                            BorderColor="#03479b"
+                                                            Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                            VerticalOptions="Start">
+
+                                                            <DatePicker x:Name="FechaPedidoDatePicker"
+                                                                Format="MM/dd/yyyy"
+                                                                Style="{StaticResource BorderlessEntryStyle}"
+                                                            
+                                                                Date="{Binding FECHA, Mode=TwoWay}"        
+                                                                HorizontalOptions="Center"/>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+                                                    
+                                                    <StackLayout Grid.Column="1" Grid.Row="0">
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label
+                                                                IsVisible="True"
+                                                                Text="Folio"
+                                                                Margin="0,0,0,0"
+                                                                FontSize="14"
+                                                                Style="{StaticResource SimpleLabelStyle}"
+                                                                TextColor="Black"/>
+                                                        </StackLayout>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="FolioText"
+                                                            MaxLength="200"
+                                                            Placeholder="Folio"
+                                                            IsEnabled="false" 
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding FOLIO, Mode=TwoWay}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+                                                </Grid>
+                                            </StackLayout>
+                                        </StackLayout>
+                                              
+                                    </Grid>
+                                    <Button Text="CONTINUAR" Clicked="CerrarEncabezadoPedido" BackgroundColor="#03479b" Margin="4,4,4,4" HeightRequest="40"/>
+
+                                </StackLayout>
+                            </ScrollView>
+                        </expander:SfExpander.Content>
+
+                    </expander:SfExpander>
+
+                </StackLayout>
+                <!--STACK PARA LOS DATOS GENERALES DEL PEDIDO-->
+
+                <StackLayout  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" IsVisible="{Binding MensajeSinArticulos}">
+                    <Label 
+                        Text="Agrega artículos al pédido" FontAttributes="Italic" FontSize="18"/>
+                </StackLayout>
+
+                <!--STACK PARA MOSTRAR LOS ARTICULOS AGREGADOS AL PEDIDO-->
+                <StackLayout Margin="0,0,0,0" x:Name="ContenedorArticulosPedido" Background="#eaeaea" IsVisible="{Binding ListaArticulosPedidoVisible}">
+
+
+                    <syncfusion:SfListView 
+                    x:Name="ListaCarrito" 
+                    ItemsSource="{Binding ListaCarrito}"  
+                    AutoFitMode="Height"
+                    IsBusy="{Binding IsBusy}"
+                    LoadMoreOption="AutoOnScroll"
+                    LoadMoreCommand="{Binding LoadMoreItemsCommand}"
+                    AllowSwiping="True"
+                    SwipeThreshold="200" 
+                    SelectionMode="None">
+
+                        <syncfusion:SfListView.RightSwipeTemplate>
+                            <DataTemplate x:Name="LeftSwipeTemplate">
+                                <Grid BackgroundColor="{Binding BindingContext.SwipeItemColor }" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                    <StackLayout VerticalOptions="Center">
+                                        <Image 
+                                        Source="borrarnotif.png"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center" />
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </syncfusion:SfListView.RightSwipeTemplate>
+
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:CustomShadowFrame
+                                    Margin="3,0,-1,3"
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource Gray-Black}"
+                                    BorderColor="{DynamicResource Gray-Black}"
+                                    BorderWidth="0"
+                                    CornerRadius="2"
+                                    HasShadow="True"
+                                    Radius="1">
+
+                                    <StackLayout Orientation="Vertical"  HorizontalOptions="Fill" MinimumHeightRequest="95" HeightRequest="95" Background="white">
+
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+
+                                            <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width=".94*" />
+                                                    <ColumnDefinition Width="0.09*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="95" />
+                                                </Grid.RowDefinitions>
+
+                                                <StackLayout Grid.Column="0" Grid.Row="0"  HorizontalOptions="Fill" Orientation="Horizontal"  VerticalOptions="Fill">
+
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_EditarArticuloPedido"/>
+                                                    </StackLayout.GestureRecognizers>
+
+                                                    <RelativeLayout VerticalOptions="Start">
+
+                                                        <StackLayout 
+                                                        x:Name="stackImagen" 
+                                                        Orientation="Vertical"
+                                                        RelativeLayout.WidthConstraint="{ConstraintExpression  
+                                                        Type=RelativeToParent,  
+                                                        Property=Width,  
+                                                        Factor=.12}"
+                                                        RelativeLayout.HeightConstraint="{ConstraintExpression  
+                                                        Type=RelativeToParent,  
+                                                        Property=Height,  
+                                                        Factor=1}">
+
+                                                            <StackLayout  Orientation="Vertical" Margin="0,-10,0,0"  VerticalOptions="CenterAndExpand">
+                                                                <Image Source="{Binding RUTAIMAGEN}" Aspect="AspectFill"  HorizontalOptions="Center"/>
+                                                            </StackLayout>
+
+                                                        </StackLayout>
+
+                                                        <StackLayout 
+                                                        Orientation="Vertical"
+                                                        VerticalOptions="FillAndExpand"
+                                                        x:Name="stackSerieDatos" 
+                                                        RelativeLayout.XConstraint="{ConstraintExpression 
+                                                        Type=RelativeToView, 
+                                                        ElementName=stackImagen, 
+                                                        Property=Width, 
+                                                        Factor=1, 
+                                                        Constant=8}"
+                            
+                                                        RelativeLayout.WidthConstraint="{ConstraintExpression  
+                                                        Type=RelativeToParent,   
+                                                        Property=Width,  
+                                                        Factor=.86}"
+                            
+                                                        RelativeLayout.HeightConstraint="{ConstraintExpression  
+                                                        Type=RelativeToParent,   
+                                                        Property=Height,  
+                                                        Factor=1}">
+
+                                                            <StackLayout Orientation="Vertical" Margin="0,3,6,0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                                <StackLayout HeightRequest="40">
+
+                                                                    <Label Text="{Binding NOMBRE}" FontAttributes="Bold" TextColor="Black" FontSize="15" 
+                                                                       HorizontalTextAlignment="Start" MaxLines="1" LineBreakMode="TailTruncation"  Margin="0,0,0,0"/>
+
+                                                                    <Label Margin="0,-6,0,0">
+                                                                        <Label.FormattedText>
+                                                                            <FormattedString>
+                                                                                <Span  FontSize="13" TextColor="Black" Text="Código: "/>
+                                                                                <Span  FontSize="13" TextColor="Black" Text="{Binding CODIGO}"/>
+                                                                            </FormattedString>
+                                                                        </Label.FormattedText>
+                                                                    </Label>
+
+                                                                </StackLayout>
+
+                                                                <StackLayout  HeightRequest="60" Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="End" Margin="0,0,0,0">
+                                                                    <Grid HorizontalOptions="FillAndExpand" Margin="0,-4,0,0">
+
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="70*" />
+                                                                            <ColumnDefinition Width="22*" />
+                                                                        </Grid.ColumnDefinitions>
+
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="45" />
+                                                                        </Grid.RowDefinitions>
+
+                                                                        <StackLayout Grid.Column="0" Grid.Row="0"  HorizontalOptions="Fill" Orientation="Vertical">
+
+                                                                            <StackLayout HeightRequest="20"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Horizontal">
+                                                                                <Grid HorizontalOptions="FillAndExpand" Margin="0,0,0,0">
+
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="50*" />
+                                                                                        <ColumnDefinition Width="50*" />
+                                                                                    </Grid.ColumnDefinitions>
+
+                                                                                    <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="20" />
+                                                                                    </Grid.RowDefinitions>
+
+                                                                                    <StackLayout Grid.Column="0">
+                                                                                        <Label  TextColor="Black" Margin="0,4,0,0" VerticalOptions="Center" LineBreakMode="CharacterWrap">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="Precio U.: "/>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="{Binding PRECIOFORMATO}"/>
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </StackLayout>
+
+                                                                                    <StackLayout Grid.Column="1">
+                                                                                        <Label  TextColor="Black" Margin="0,4,0,0" VerticalOptions="Center">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="Cantidad: "/>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="{Binding CANTIDADFORMATO}"/>
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </StackLayout>
+                                                                                </Grid>
+                                                                            </StackLayout>
+
+                                                                            <StackLayout HeightRequest="20"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Orientation="Horizontal">
+                                                                                <Grid HorizontalOptions="FillAndExpand" Margin="0,-3,0,0">
+
+                                                                                    <Grid.ColumnDefinitions>
+                                                                                        <ColumnDefinition Width="50*" />
+                                                                                        <ColumnDefinition Width="50*" />
+                                                                                    </Grid.ColumnDefinitions>
+
+                                                                                    <Grid.RowDefinitions>
+                                                                                        <RowDefinition Height="20" />
+                                                                                    </Grid.RowDefinitions>
+
+                                                                                    <StackLayout Grid.Column="0">
+                                                                                        <Label  TextColor="Black" Margin="0,4,0,0" VerticalOptions="Center" LineBreakMode="CharacterWrap">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="Desc.: "/>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="{Binding DESCUENTOFORMATO}"/>
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </StackLayout>
+
+                                                                                    <StackLayout Grid.Column="1">
+                                                                                        <Label  TextColor="Black" Margin="0,4,0,0" VerticalOptions="Center">
+                                                                                            <Label.FormattedText>
+                                                                                                <FormattedString>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="Porc. Desc.: "/>
+                                                                                                    <Span  FontSize="12" TextColor="Black"  Text="{Binding DESCUENTOPORCFORMATO}"/>
+                                                                                                </FormattedString>
+                                                                                            </Label.FormattedText>
+                                                                                        </Label>
+                                                                                    </StackLayout>
+                                                                                </Grid>
+                                                                            </StackLayout>
+
+                                                                        </StackLayout>
+
+
+                                                                        <StackLayout Grid.Column="1" Grid.Row="0"  HorizontalOptions="End" VerticalOptions="End" Orientation="Horizontal" Margin="0,0,0,0">
+                                                                            <Label FontSize="14" TextColor="Black"  FontAttributes="Bold" Text="{Binding COSTOFORMATO}" LineBreakMode="WordWrap"/>
+                                                                        </StackLayout>
+
+                                                                    </Grid>
+                                                                </StackLayout>
+
+                                                            </StackLayout>
+
+                                                        </StackLayout>
+
+                                                    </RelativeLayout>
+                                                </StackLayout>
+
+                                                <StackLayout Grid.Column="1" Grid.Row="0" HorizontalOptions="Fill" Orientation="Vertical" VerticalOptions="Fill" >
+
+                                                    <Frame CornerRadius="1" 
+                                                    Margin="0,10,5,0"
+                                                    HorizontalOptions="Center" 
+                                                    VerticalOptions="Start"
+                                                    HasShadow="True"
+                                                    IsClippedToBounds="True"
+                                                    Padding="0">
+                                                        <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="#03479b" HorizontalOptions="Center" HeightRequest="24" WidthRequest="24">
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_AumentarCantidadArticulo"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                            <Image Margin="3,3,3,0" Source="iconomas.png" Aspect="AspectFill"  HeightRequest="18"/>
+                                                        </StackLayout>
+                                                    </Frame>
+
+                                                    <Frame CornerRadius="1" 
+                                                    Margin="0,0,5,10"
+                                                    HorizontalOptions="Center" 
+                                                    VerticalOptions="EndAndExpand"
+                                                    HasShadow="True"
+                                                    IsClippedToBounds="True"
+                                                    Padding="0">
+                                                        <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="#03479b" HorizontalOptions="Center" HeightRequest="24" WidthRequest="24">
+                                                            <StackLayout.GestureRecognizers>
+                                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_DisminuirCantidadArticulo"/>
+                                                            </StackLayout.GestureRecognizers>
+                                                            <Image Margin="3,3,3,0" Source="iconomenos.png" Aspect="AspectFill"  HeightRequest="18"/>
+                                                        </StackLayout>
+                                                    </Frame>
+
+                                                </StackLayout>
+
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </controls:CustomShadowFrame>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+
+                    </syncfusion:SfListView>
+
+                </StackLayout>
+                <!--STACK PARA MOSTRAR LOS ARTICULOS AGREGADOS AL PEDIDO-->
+
+                <!--STACK PARA MOSTRAR LOS TOTALES-->
+                <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="230" Margin="0,0,0,0" Background="white">
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="End" HeightRequest="20" HorizontalOptions="FillAndExpand" Background="#eaeaea" Padding="0,0,0,7">
+
+                        <StackLayout HorizontalOptions="Start" Orientation="Horizontal"  HeightRequest="20" Margin="10,0,0,0" IsVisible="{Binding BindingContext.EditarPedido}">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_EditarArticuloPedido"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <StackLayout WidthRequest="16" HeightRequest="16">
+                                <Image Margin="0,0,0,0" Source="plusbutton.png" Aspect="AspectFill" HeightRequest="21"/>
+                            </StackLayout>
+
+                            <Label Text="Agregar Productos"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="15"/>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal"  HeightRequest="20" Margin="0,0,10,0">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_NotasPie"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <StackLayout WidthRequest="16" HeightRequest="16">
+                                <Image Margin="0,0,0,0" Source="nota.png" Aspect="AspectFill" HeightRequest="21"/>
+                            </StackLayout>
+
+                            <Label Text="Editar Notas al Pie"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            TextColor="Black"
+                            FontSize="15"/>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical" VerticalOptions="Start"  Background="white" HeightRequest="130">
+
+                        <Grid
+                        Padding="1"
+                        ColumnSpacing="15"
+                        RowSpacing="10">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="40*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="15" />
+                                <RowDefinition Height="15" />
+                            </Grid.RowDefinitions>
+
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End"  HeightRequest="15" Grid.Column="0" Grid.Row="0" Margin="10,0,0,0">
+                                <Label Text="Cantidad de productos"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="15" Grid.Column="1" Grid.Row="0" Margin="0,0,10,0">
+                                <Label Text="{Binding ListaCarrito.Count}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End"  HeightRequest="15" Grid.Column="0" Grid.Row="1" Margin="10,0,0,0">
+                                <Label Text="Subtotal"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="15" Grid.Column="1" Grid.Row="1" Margin="0,0,10,0">
+                                <Label Text="{Binding SubTotalText}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End"  HeightRequest="15" Grid.Column="0" Grid.Row="2" Margin="10,0,0,0">
+                                <Label Text="Descuento"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="15" Grid.Column="1" Grid.Row="2" Margin="0,0,10,0">
+                                <Label Text="{Binding SumaDescuentosText}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End"  HeightRequest="15" Grid.Column="0" Grid.Row="3" Margin="10,0,0,0">
+                                <Label Text="I.V.A."
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="15" Grid.Column="1" Grid.Row="3" Margin="0,0,10,0">
+                                <Label Text="{Binding SumaIVAText}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End"  HeightRequest="15" Grid.Column="0" Grid.Row="4" Margin="10,0,0,0">
+                                <Label Text="I.E.P.S."
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="15" Grid.Column="1" Grid.Row="4" Margin="0,0,10,0">
+                                <Label Text="{Binding SumaIEPSText}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End"  HeightRequest="15" Grid.Column="0" Grid.Row="5" Margin="10,0,0,0">
+                                <Label Text="Total"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical" VerticalOptions="End" HeightRequest="15" Grid.Column="1" Grid.Row="5" Margin="0,0,10,0">
+                                <Label Text="{Binding TotalText}"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                FontSize="15"/>
+                            </StackLayout>
+
+                        </Grid>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <!--<StackLayout Orientation="Horizontal" VerticalOptions="End" Background="white" HeightRequest="45" Margin="0,-6,0,0" IsVisible="{Binding BotonesGuardarVisibles}">
+                    -->
+                <!--<Button Text="Cancelar" HorizontalOptions="StartAndExpand" Command="{Binding CancelarPedidoCommand}" BackgroundColor="#E40203" Margin="4,4,4,4" HeightRequest="40"/>-->
+                <!--
+                    <Button Text="Guardar" HorizontalOptions="StartAndExpand" Command="{Binding GuardarPedidoCommand}" BackgroundColor="#03479b" Margin="4,4,4,4" HeightRequest="40" IsVisible="{Binding BotonesGuardarVisibles}"/>
+                    <Button Text="Afectar" HorizontalOptions="EndAndExpand" Command="{Binding AfectarPedidoCommand}" BackgroundColor="#03479b" Margin="4,4,4,4" HeightRequest="40" IsVisible="{Binding AfectarVisible}"/>
+                </StackLayout>-->
+                <!--STACK PARA MOSTRAR LOS TOTALES-->
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE BUSQUEDA DE ARTICULOS-->
+            <StackLayout AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" 
+                         IsVisible="{Binding BuscadorArticulosVisible}" Background="#eaeaea">
+
+                <StackLayout  HorizontalOptions="Fill" HeightRequest="40" VerticalOptions="StartAndExpand" Background="white">
+
+                    <Grid
+                    Padding="0"
+                    ColumnSpacing="15"
+                    RowSpacing="10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="95*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout  HorizontalOptions="Fill" Grid.Row="0" Grid.Column="0">
+                            <controls:BorderlessEntry
+                                    x:Name="BusquedaArticuloText"
+                                    Margin="10,0,10,0"
+                                    HeightRequest="40"
+                                    MaxLength="200" 
+                                    Placeholder="Busca un Producto"
+                                    Style="{StaticResource BorderlessEntryStyle}"
+                                    Text="{Binding Busqueda, Mode=TwoWay}">
+                                <Entry.Behaviors>
+                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                </Entry.Behaviors>
+                            </controls:BorderlessEntry>
+                        </StackLayout>
+
+                        <StackLayout  Grid.Row="0" Grid.Column="1" Margin="-5,0,0,0" VerticalOptions="Center" IsVisible="{Binding BorrarBusquedaVisible}">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_BorrarBusqueda"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label Text="X" FontSize="17" FontAttributes="Bold" TextColor="#afafaf"/>
+                        </StackLayout>
+
+                    </Grid>
+                </StackLayout>
+
+                <!--SHIMMER DE CARGA-->
+                <StackLayout Orientation="Vertical" Margin="0,-30,0,0" IsVisible="{Binding LoadingArticulos}">
+
+                    <shimmer:SfShimmer>
+                        <shimmer:SfShimmer.CustomView>
+
+                            <Grid
+                            Padding="10"
+                            ColumnSpacing="15"
+                            RowSpacing="10">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+
+                                <!--PRIMER ITEM-->
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="1"
+                             Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                             Grid.RowSpan="4" />
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="1"
+                             Grid.Column="1"
+                             HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="3"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="4"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <!--SEGUNDO ITEM-->
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="6"
+                             Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                             Grid.RowSpan="4" />
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="6"
+                             Grid.Column="1"
+                             HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="7"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="8"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="9"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <!--TERCER ITEM-->
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="11" 
+                             Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                             Grid.RowSpan="4" />
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="11"
+                             Grid.Column="1"
+                             HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="12"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="13"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="14"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <!--TERCER ITEM-->
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="16" 
+                             Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                             Grid.RowSpan="4" />
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="16"
+                             Grid.Column="1"
+                             HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="17"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="18"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                                <BoxView BackgroundColor="Gray"
+                             Grid.Row="19"
+                             Grid.Column="1"
+                            HeightRequest="20"
+                            HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start"/>
+
+                            </Grid>
+
+                        </shimmer:SfShimmer.CustomView>
+                    </shimmer:SfShimmer>
+
+                </StackLayout>
+                <!--SHIMMER DE CARGA-->
+
+                <StackLayout  HorizontalOptions="Center" VerticalOptions="CenterAndExpand" IsVisible="{Binding BusquedaProductosSinResultados}">
+                    <Label 
+                        Text="La búsqueda no produjo ningún resultado" FontAttributes="Italic" FontSize="18"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,0,0,0" x:Name="ContenedorArticulosBusqueda" Background="#eaeaea" IsVisible="{Binding ListaArticulosBusquedaVisible}">
+                    <syncfusion:SfListView 
+                    x:Name="ListaArticulosBusqueda" 
+                    ItemsSource="{Binding ListaArticulosBusqueda}"  
+                    AutoFitMode="DynamicHeight"
+                    IsBusy="{Binding IsBusy}"
+                    LoadMoreOption="AutoOnScroll"
+                    AllowSwiping="True"
+                    SwipeThreshold="200" 
+                    SelectionMode="None"
+                    LoadMoreCommand="{Binding LoadMoreArticulosCommand}">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:CustomShadowFrame
+                                    Margin="3,0,-1,3"
+                                    Padding="0"
+                                    BackgroundColor="{DynamicResource Gray-Black}"
+                                    BorderColor="{DynamicResource Gray-Black}"
+                                    BorderWidth="0"
+                                    CornerRadius="2"
+                                    HasShadow="True"
+                                    Radius="1">
+
+                                    <StackLayout Orientation="Vertical"  HorizontalOptions="Fill" MinimumHeightRequest="65" HeightRequest="65" Background="white">
+
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_MostrarArticuloAgregar"/>
+                                        </StackLayout.GestureRecognizers>
+
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                                            <StackLayout 
+                                                        x:Name="stackImagenArticulo" 
+                                                        Orientation="Vertical"
+                                                        RelativeLayout.WidthConstraint="{ConstraintExpression  
+                                                        Type=RelativeToParent,  
+                                                        Property=Width,  
+                                                        Factor=.18}"
+                                                        RelativeLayout.HeightConstraint="{ConstraintExpression  
+                                                        Type=RelativeToParent,  
+                                                        Property=Height,  
+                                                        Factor=1}">
+
+                                                <StackLayout  Orientation="Vertical" Margin="0,0,0,0"  VerticalOptions="CenterAndExpand"  WidthRequest="50" HeightRequest="60">
+                                                    <Image Source="{Binding RUTAIMAGEN}" Aspect="AspectFit"  HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+                                            <StackLayout 
+                                                Orientation="Vertical"
+                                                VerticalOptions="FillAndExpand"
+                                                    
+                                                x:Name="stackSerieDatos" 
+                                                RelativeLayout.XConstraint="{ConstraintExpression 
+                                                Type=RelativeToView, 
+                                                ElementName=stackImagen, 
+                                                Property=Width, 
+                                                Factor=1, 
+                                                Constant=8}"
+                            
+                                                RelativeLayout.WidthConstraint="{ConstraintExpression  
+                                                Type=RelativeToParent,   
+                                                Property=Width,  
+                                                Factor=.79}"
+                            
+                                                RelativeLayout.HeightConstraint="{ConstraintExpression  
+                                                Type=RelativeToParent,   
+                                                Property=Height,  
+                                                Factor=1}">
+
+                                                <StackLayout Orientation="Vertical" Margin="0,3,6,0"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                                                    <StackLayout HeightRequest="40">
+                                                        <Label Text="{Binding NOMBRE}" FontAttributes="Bold" TextColor="Black" FontSize="15" 
+                                                                       HorizontalTextAlignment="Start" MaxLines="1" LineBreakMode="TailTruncation"  Margin="0,0,0,0"/>
+
+                                                        <Label Margin="0,-6,0,0" LineBreakMode="TailTruncation">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span  FontSize="13" TextColor="Black" Text="Código: "/>
+                                                                    <Span  FontSize="13" TextColor="Black" Text="{Binding CODIGO}"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                        <Label Margin="0,-6,0,0">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span  FontSize="13" TextColor="Black" Text="Precio U.: "/>
+                                                                    <Span  FontSize="13" TextColor="Black" Text="{Binding PRECIO1}"/>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </controls:CustomShadowFrame>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                </StackLayout>
+
+                <StackLayout  HorizontalOptions="Fill" HeightRequest="50" VerticalOptions="EndAndExpand">
+                    <Button Text="VOLVER AL PEDIDO" Clicked="Button_Clicked" BackgroundColor="#03479b" Margin="4,4,4,4" HeightRequest="40"/>
+                </StackLayout>
+
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE EDICIÓN DEL ARTÍCULO-->
+            <StackLayout IsVisible="{Binding EdicionArticuloVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+
+                    <StackLayout>
+
+                        <StackLayout x:Name="EditorArticulo" HorizontalOptions="Fill"  VerticalOptions="CenterAndExpand" Margin="30,0,30,0" Background="white">
+
+                            <StackLayout HeightRequest="30" Orientation="Horizontal">
+
+                                <Label
+                                IsVisible="True"
+                                Text="{Binding TituloEdicionArticulo, Mode=TwoWay}"
+                                HorizontalOptions="CenterAndExpand"
+                                Margin="16,5,0,0"
+                                LineBreakMode="TailTruncation"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                FontSize="16"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                TextColor="Black"/>
+
+                                <StackLayout  WidthRequest="30" HorizontalOptions="End">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_CerrarEdcionArticulo"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label
+                                    IsVisible="True"
+                                    Text="X"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Margin="0,5,9,0"
+                                    HorizontalTextAlignment="Center"
+                                   FontSize="19"
+                                    FontAttributes="Bold"
+                                    TextColor="#0A4082"
+                                    Style="{StaticResource SimpleLabelStyle}"
+                                    />
+                                </StackLayout>
+
+                            </StackLayout>
+
+
+                            <Grid HorizontalOptions="FillAndExpand" Margin="10,10,10,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="70" />
+                                    <RowDefinition Height="70" />
+                                    <RowDefinition Height="70" />
+                                </Grid.RowDefinitions>
+
+                                <!--TIPO DE PRECIO-->
+                                <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                        IsVisible="True"
+                                        Text="Tipo de Precio"
+                                        Margin="0,0,0,0"
+                                        FontSize="14"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="Black"/>
+                                    </StackLayout>
+
+                                    <border:SfBorder
+                                    Margin="0,0,0,0"
+                                    Padding="-2"
+                                    BorderColor="#03479b"
+                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                    VerticalOptions="Start">
+
+                                        <combobox:SfComboBox HeightRequest="41" 
+                                        x:Name="comboBoxTipoPrecio" 
+                                        TextSize="{OnIdiom Tablet=17, Phone=16}" 
+                                        Margin="8,0,0,0"
+                                        Watermark="Tipo Precio" 
+                                        SuggestionMode="StartsWith"
+                                        DataSource="{Binding ListaTipoPrecio}" 
+                                        DisplayMemberPath="TIPOPRECIO"  
+                                        SelectedValuePath="IDTIPOPRECIO" 
+                                        SelectedValue="{Binding IdTipoPrecioEdicionArticulo, Mode=TwoWay}">
+
+                                        </combobox:SfComboBox>
+
+                                    </border:SfBorder>
+
+                                </StackLayout>
+
+                                <!--PRECIO-->
+                                <StackLayout Grid.Column="0" Grid.Row="1">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                        IsVisible="True"
+                                        Text="Precio Unitario"
+                                        Margin="0,0,0,0"
+                                        FontSize="14"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="Black"/>
+                                    </StackLayout>
+
+                                    <border:SfBorder
+                                    Margin="0,0,0,0"
+                                    Padding="12,8"
+                                    BorderColor="#03479b"
+                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                    VerticalOptions="Start">
+
+                                        <controls:BorderlessEntry
+                                        x:Name="PrecioText"
+                                        MaxLength="200"
+                                        Placeholder=""
+                                        Keyboard="Numeric"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding PrecioEdicionArticulo, Mode=TwoWay}">
+                                            <Entry.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                            </Entry.Behaviors>
+                                        </controls:BorderlessEntry>
+
+                                    </border:SfBorder>
+
+                                </StackLayout>
+
+                                <!--CANTIDAD-->
+                                <StackLayout Grid.Column="1" Grid.Row="1">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                        IsVisible="True"
+                                        Text="Cantidad"
+                                        Margin="0,0,0,0"
+                                        FontSize="14"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="Black"/>
+                                    </StackLayout>
+
+                                    <border:SfBorder
+                                    Margin="0,0,0,0"
+                                    Padding="12,8"
+                                    BorderColor="#03479b"
+                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                    VerticalOptions="Start">
+
+                                        <controls:BorderlessEntry
+                                        x:Name="CantidadText"
+                                        MaxLength="200"
+                                        Placeholder=""
+                                        Keyboard="Numeric"
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding CantidadEdicionArticulo, Mode=TwoWay}">
+                                            <Entry.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                            </Entry.Behaviors>
+                                        </controls:BorderlessEntry>
+
+                                    </border:SfBorder>
+
+                                </StackLayout>
+
+                                <!--DESCUENTO IMPORTE-->
+                                <StackLayout Grid.Column="0" Grid.Row="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                        IsVisible="True"
+                                        Text="Descuento Importe"
+                                        Margin="0,0,0,0"
+                                        FontSize="14"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="Black"/>
+                                    </StackLayout>
+
+                                    <border:SfBorder
+                                    Margin="0,0,0,0"
+                                    Padding="12,8"
+                                    BorderColor="#03479b"
+                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                    VerticalOptions="Start">
+
+                                        <controls:BorderlessEntry
+                                        x:Name="DescuentoText"
+                                        MaxLength="200"
+                                        Placeholder=""
+                                        Keyboard="Numeric" 
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding DescuentoEdicionArticulo, Mode=TwoWay}">
+                                            <Entry.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                            </Entry.Behaviors>
+                                        </controls:BorderlessEntry>
+
+                                    </border:SfBorder>
+
+                                </StackLayout>
+
+
+                                <!--DESCUENTO PORCENTAJE-->
+                                <StackLayout Grid.Column="1" Grid.Row="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                        IsVisible="True"
+                                        Text="Descuento Porc."
+                                        Margin="0,0,0,0"
+                                        FontSize="14"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="Black"/>
+                                    </StackLayout>
+
+                                    <border:SfBorder
+                                    Margin="0,0,0,0"
+                                    Padding="12,8"
+                                    BorderColor="#03479b"
+                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                    VerticalOptions="Start">
+
+                                        <controls:BorderlessEntry
+                                        x:Name="DescuentoPorcText"
+                                        MaxLength="200"
+                                        Placeholder=""
+                                        Keyboard="Numeric" 
+                                        Style="{StaticResource BorderlessEntryStyle}"
+                                        Text="{Binding DescuentoEdicionArticuloPorcentual, Mode=TwoWay}">
+                                            <Entry.Behaviors>
+                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                            </Entry.Behaviors>
+                                        </controls:BorderlessEntry>
+
+                                    </border:SfBorder>
+
+                                </StackLayout>
+
+                            </Grid>
+
+                            <StackLayout IsVisible="{Binding VisualizaImpuestos}" Margin="14,-8,14,4" HeightRequest="20" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label
+                                Text="{Binding CadenaImpuestosArticuloEdicion}"
+                                Margin="0,0,0,0"
+                                FontSize="14"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                TextColor="Black"/>
+                            </StackLayout>
+
+                            <StackLayout HorizontalOptions="Fill" Margin="20,7,20,0" Orientation="Horizontal">
+                                <Label
+                                IsVisible="True"
+                                Text="{Binding OfertaAplicada}"
+                                HorizontalOptions="Start"
+                                FontAttributes="Bold"
+                                FontSize="16"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                TextColor="Black"/>
+                            </StackLayout>
+
+                            <Label
+                            IsVisible="True"
+                            Text="{Binding SubTotalConImpuesto, Mode=TwoWay}"
+                            HorizontalOptions="Start"
+                            Margin="20,5,0,0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Style="{StaticResource SimpleLabelStyle}"
+                            TextColor="Black"/>
+
+                            <Label
+                            IsVisible="True"
+                            Text="{Binding ImporteEdicionArticulo, Mode=TwoWay}"
+                            HorizontalOptions="Start"
+                            Margin="20,5,0,0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            Style="{StaticResource SimpleLabelStyle}"
+                            TextColor="Black"/>
+
+                            <StackLayout Margin="20,5,0,0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OfertasProducto"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label
+                                     Margin="0,4,0,0"
+                                    IsVisible="True"
+                                    Text="Ver detalles de precio"
+                                    HorizontalOptions="Start"
+                                    TextDecorations="Underline"
+                                    FontAttributes="Bold"
+                                    FontSize="15"
+                                    Style="{StaticResource SimpleLabelStyle}"
+                                    TextColor="blue"/>
+                            </StackLayout>
+
+                            <!--Command="{Binding CerrarEdicionArticuloCommand}"-->
+                            <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="12,20,12,12">
+                                <StackLayout HorizontalOptions="Start" Padding="4">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_CerrarEdcionArticulo"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label 
+                                    Text="Cerrar" 
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="#0A4082"
+                                    Style="{StaticResource SimpleLabelStyle}"
+                                    />
+                                </StackLayout>
+
+                                <!--Command="{Binding AgregarArticuloCommand}"-->
+                                <StackLayout HorizontalOptions="EndAndExpand" Padding="4">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_AgregarArticulo"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label 
+                                    x:Name="BtnAgregarArticuloPedido"
+                                    Text="Actualizar Producto" 
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    TextColor="#0A4082"
+                                    Style="{StaticResource SimpleLabelStyle}"
+                                    />
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE OFERTAS DEL ARTICULO-->
+            <StackLayout IsVisible="{Binding DetalleOfertaVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+
+                    <StackLayout>
+                        <StackLayout x:Name="OfertasArticulo" HorizontalOptions="Fill" Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="10,10,10,10" Background="white">
+                            <StackLayout HeightRequest="30" Orientation="Horizontal">
+                                <Label
+                                IsVisible="True"
+                                Text="{Binding TituloOfertaProducto}"
+                                HorizontalOptions="CenterAndExpand"
+                                Margin="16,5,0,0"
+                                LineBreakMode="TailTruncation"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                FontSize="16"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                TextColor="Black"/>
+
+                                <StackLayout  WidthRequest="30" HorizontalOptions="End">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_CerrarOfertaProducto"/>
+                                    </StackLayout.GestureRecognizers>
+
+                                    <Label
+                                    IsVisible="True"
+                                    Text="X"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Margin="0,5,9,0"
+                                    HorizontalTextAlignment="Center"
+                                   FontSize="19"
+                                    FontAttributes="Bold"
+                                    TextColor="#0A4082"
+                                    Style="{StaticResource SimpleLabelStyle}"
+                                    />
+
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout Margin="11,10,11,10" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+
+                                <ScrollView>
+                                    <StackLayout>
+                                        <!--PRECIO PARA CLIENTE-->
+                                        <StackLayout HorizontalOptions="FillAndExpand" IsVisible="{Binding ListaPreciosVisible}">
+                                            <Label
+                                            IsVisible="True"
+                                            Text="Precio para cliente"
+                                            HorizontalOptions="Start"
+                                            Margin="0,5,9,0"
+                                            HorizontalTextAlignment="Start"
+                                            FontSize="15"
+                                            FontAttributes="Bold"
+                                            TextColor="Black"
+                                            Style="{StaticResource SimpleLabelStyle}"
+                                            />
+
+                                            <Grid HorizontalOptions="FillAndExpand">
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50*" />
+                                                    <ColumnDefinition Width="50*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50" />
+                                                </Grid.RowDefinitions>
+
+                                                <!--PRECIO BASE-->
+                                                <StackLayout Grid.Column="0" Grid.Row="0">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Precio Base"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="14"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+                                                    </StackLayout>
+
+                                                    <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                        <controls:BorderlessEntry
+                                                        x:Name="PrecioBaseText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding PrecioBase}">
+                                                            <Entry.Behaviors>
+                                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                            </Entry.Behaviors>
+                                                        </controls:BorderlessEntry>
+
+                                                    </border:SfBorder>
+                                                </StackLayout>
+
+                                                <!--PORCENTAJE DESCUENTO-->
+                                                <StackLayout Grid.Column="1" Grid.Row="0">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Porcentaje Descuento"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="14"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+                                                    </StackLayout>
+
+                                                    <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                        <controls:BorderlessEntry
+                                                        x:Name="PorcentajeDescuentoText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding PorcentajeDescuento}">
+                                                            <Entry.Behaviors>
+                                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                            </Entry.Behaviors>
+                                                        </controls:BorderlessEntry>
+
+                                                    </border:SfBorder>
+                                                </StackLayout>
+
+                                            </Grid>
+
+                                        </StackLayout>
+                                        <!--OFERTAS POR FECHA-->
+                                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+                                            <Label
+                                            IsVisible="True"
+                                            Text="Oferta por fecha"
+                                            HorizontalOptions="Start"
+                                            Margin="0,5,9,0"
+                                            HorizontalTextAlignment="Start"
+                                            FontSize="15"
+                                            FontAttributes="Bold"
+                                            TextColor="Black"
+                                            Style="{StaticResource SimpleLabelStyle}"
+                                            />
+
+                                            <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="25*" />
+                                                    <ColumnDefinition Width="37*" />
+                                                    <ColumnDefinition Width="37*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50" />
+                                                </Grid.RowDefinitions>
+
+                                                <!--PORCENTAJE-->
+                                                <StackLayout Grid.Column="0" Grid.Row="0">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="% Oferta"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="14"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+                                                    </StackLayout>
+
+                                                    <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                        <controls:BorderlessEntry
+                                                        x:Name="OfertaFechaText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding PorcentajePorFecha}">
+                                                            <Entry.Behaviors>
+                                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                            </Entry.Behaviors>
+                                                        </controls:BorderlessEntry>
+
+                                                    </border:SfBorder>
+                                                </StackLayout>
+
+                                                <!--FECHA INICIO-->
+                                                <StackLayout Grid.Column="1" Grid.Row="0">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Fecha Inicio"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="14"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+                                                    </StackLayout>
+
+                                                    <border:SfBorder
+                                                Margin="0,0,0,0"
+                                                Padding="12,8"
+                                                BorderColor="#03479b"
+                                                Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                VerticalOptions="Start">
+
+                                                        <controls:BorderlessEntry
+                                                    x:Name="OfertaFechaInicioText"
+                                                    MaxLength="200"
+                                                    Placeholder=""
+                                                    HeightRequest="20"
+                                                    Style="{StaticResource BorderlessEntryStyle}"
+                                                    Text="{Binding OfertaFechaInicio}">
+                                                            <Entry.Behaviors>
+                                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                            </Entry.Behaviors>
+                                                        </controls:BorderlessEntry>
+
+                                                    </border:SfBorder>
+                                                </StackLayout>
+
+
+                                                <!--FECHA FIN-->
+                                                <StackLayout Grid.Column="2" Grid.Row="0">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label
+                                                IsVisible="True"
+                                                Text="Fecha Fin"
+                                                Margin="0,0,0,0"
+                                                FontSize="14"
+                                                Style="{StaticResource SimpleLabelStyle}"
+                                                TextColor="#494949"/>
+                                                    </StackLayout>
+
+                                                    <border:SfBorder
+                                                Margin="0,0,0,0"
+                                                Padding="12,8"
+                                                BorderColor="#03479b"
+                                                Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                VerticalOptions="Start">
+
+                                                        <controls:BorderlessEntry
+                                                    x:Name="OfertaFechaFinText"
+                                                    MaxLength="200"
+                                                    Placeholder=""
+                                                    HeightRequest="20"
+                                                    Style="{StaticResource BorderlessEntryStyle}"
+                                                    Text="{Binding OfertaFechaFin}">
+                                                            <Entry.Behaviors>
+                                                                <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                            </Entry.Behaviors>
+                                                        </controls:BorderlessEntry>
+
+                                                    </border:SfBorder>
+                                                </StackLayout>
+
+                                            </Grid>
+
+                                        </StackLayout>
+
+                                        <!--MAXIMO DE DESCUENTO-->
+                                        <StackLayout Margin="0,25,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    IsVisible="True"
+                                                    Text="Porcentaje Máximo de Descuento"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="14"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="Black"/>
+                                            </StackLayout>
+
+                                            <border:SfBorder
+                                                Margin="0,0,0,0"
+                                                Padding="12,8"
+                                                BorderColor="#03479b"
+                                                Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                VerticalOptions="Start">
+
+                                                <controls:BorderlessEntry
+                                                    x:Name="OfertaMaximaText"
+                                                    MaxLength="200"
+                                                    Placeholder=""
+                                                    HeightRequest="20"
+                                                    Style="{StaticResource BorderlessEntryStyle}"
+                                                    Text="{Binding OfertaMaxima}">
+                                                    <Entry.Behaviors>
+                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                    </Entry.Behaviors>
+                                                </controls:BorderlessEntry>
+
+                                            </border:SfBorder>
+                                        </StackLayout>
+
+                                        <!--PRECIO POR HORA DE VENTA-->
+                                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,14,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                            IsVisible="True"
+                                            Text="Precio por Hora de Venta"
+                                            HorizontalOptions="Start"
+                                            HorizontalTextAlignment="Start"
+                                            FontSize="15"
+                                            FontAttributes="Bold"
+                                            TextColor="Black"
+                                            Style="{StaticResource SimpleLabelStyle}"
+                                            />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <CheckBox
+                                                    IsChecked="{Binding PrecioPorHoraActivo}"
+                                                    IsEnabled="False"/>
+
+                                                <Label
+                                            IsVisible="True"
+                                            Text="{Binding EstatusPrecioPorHora}"
+                                            Margin="-6,0,0,0"
+                                            FontSize="15"
+                                            Style="{StaticResource SimpleLabelStyle}"
+                                            TextColor="#494949"/>
+                                            </StackLayout>
+
+                                            <!--PRECIO 1-->
+                                            <StackLayout>
+                                                <Label
+                                            IsVisible="True"
+                                            Text="Precio 1:"
+                                            Margin="0,0,0,0"
+                                            FontSize="15"
+                                            Style="{StaticResource SimpleLabelStyle}"
+                                            TextColor="#494949"/>
+
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                                                    <Grid HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50*" />
+                                                            <ColumnDefinition Width="50*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Desde:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio1HoraInicioText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio1HoraInicio}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="1">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Hasta:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio1HoraFinText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio1HoraFin}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <!--PRECIO 2-->
+                                            <StackLayout>
+                                                <Label
+                                        IsVisible="True"
+                                        Text="Precio 2:"
+                                        Margin="0,0,0,0"
+                                        FontSize="15"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="#494949"/>
+
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                                                    <Grid HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50*" />
+                                                            <ColumnDefinition Width="50*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Desde:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio2HoraInicioText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio2HoraInicio}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="1">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Hasta:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio2HoraFinText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio2HoraFin}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <!--PRECIO 3-->
+                                            <StackLayout>
+                                                <Label
+                                        IsVisible="True"
+                                        Text="Precio 3:"
+                                        Margin="0,0,0,0"
+                                        FontSize="15"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="#494949"/>
+
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                                                    <Grid HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50*" />
+                                                            <ColumnDefinition Width="50*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Desde:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio3HoraInicioText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio3HoraInicio}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="1">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Hasta:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio3HoraFinText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio3HoraFin}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <!--PRECIO 4-->
+                                            <StackLayout>
+                                                <Label
+                                        IsVisible="True"
+                                        Text="Precio 4:"
+                                        Margin="0,0,0,0"
+                                        FontSize="15"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="#494949"/>
+
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                                                    <Grid HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50*" />
+                                                            <ColumnDefinition Width="50*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Desde:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio4HoraInicioText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio4HoraInicio}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="1">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Hasta:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio4HoraFinText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio4HoraFin}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <!--PRECIO 5-->
+                                            <StackLayout>
+                                                <Label
+                                        IsVisible="True"
+                                        Text="Precio 5:"
+                                        Margin="0,0,0,0"
+                                        FontSize="15"
+                                        Style="{StaticResource SimpleLabelStyle}"
+                                        TextColor="#494949"/>
+
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+                                                    <Grid HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50*" />
+                                                            <ColumnDefinition Width="50*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50" />
+                                                        </Grid.RowDefinitions>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Desde:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio5HoraInicioText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio5HoraInicio}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                        <StackLayout Grid.Row="0" Grid.Column="1">
+                                                            <Label
+                                                    IsVisible="True"
+                                                    Text="Hasta:"
+                                                    Margin="0,0,0,0"
+                                                    FontSize="15"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    TextColor="#494949"/>
+
+                                                            <border:SfBorder
+                                                    Margin="0,0,0,0"
+                                                    Padding="12,8"
+                                                    BorderColor="#03479b"
+                                                    Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                    VerticalOptions="Start">
+
+                                                                <controls:BorderlessEntry
+                                                        x:Name="Precio5HoraFinText"
+                                                        MaxLength="200"
+                                                        Placeholder=""
+                                                        HeightRequest="20"
+                                                        Style="{StaticResource BorderlessEntryStyle}"
+                                                        Text="{Binding Precio5HoraFin}">
+                                                                    <Entry.Behaviors>
+                                                                        <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                    </Entry.Behaviors>
+                                                                </controls:BorderlessEntry>
+
+                                                            </border:SfBorder>
+                                                        </StackLayout>
+
+                                                    </Grid>
+
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                        </StackLayout>
+
+                                        <!--PRECIO POR DIA DE LA SEMANA-->
+                                        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,14,0,0">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    IsVisible="True"
+                                                    Text="Ofertas por Día de la Semana"
+                                                    HorizontalOptions="Start"
+                                                    HorizontalTextAlignment="Start"
+                                                    FontSize="15"
+                                                    FontAttributes="Bold"
+                                                    TextColor="Black"
+                                                    Style="{StaticResource SimpleLabelStyle}"
+                                                    />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <CheckBox
+                                                    IsChecked="{Binding OfertaDiaActivo}"
+                                                    IsEnabled="False"/>
+
+                                                <Label
+                                                IsVisible="True"
+                                                Text="{Binding EstatusOfertaAlDia}"
+                                                Margin="-6,0,0,0"
+                                                FontSize="15"
+                                                Style="{StaticResource SimpleLabelStyle}"
+                                                TextColor="#494949"/>
+                                            </StackLayout>
+
+                                            <StackLayout HorizontalOptions="FillAndExpand">
+                                                <Grid HorizontalOptions="FillAndExpand" Margin="10,0,10,10">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50*" />
+                                                        <ColumnDefinition Width="50*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                        <RowDefinition Height="60" />
+                                                    </Grid.RowDefinitions>
+
+                                                    <!--LUNES-->
+                                                    <StackLayout Grid.Row="0" Grid.Column="0">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Lunes:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoLunesText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoLunes}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+                                                    <!--MARTES-->
+                                                    <StackLayout Grid.Row="0" Grid.Column="1">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Martes:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoMartesText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoMartes}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+                                                    <!--MIERCOLES-->
+                                                    <StackLayout Grid.Row="1" Grid.Column="0">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Miercoles:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoMiercolesText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoMiercoles}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+                                                    <!--JUEVES-->
+                                                    <StackLayout Grid.Row="1" Grid.Column="1">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Jueves:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoJuevesText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoJueves}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+
+                                                    <!--VIERNES-->
+                                                    <StackLayout Grid.Row="2" Grid.Column="0">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Viernes:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoViernesText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoViernes}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+                                                    <!--SABADO-->
+                                                    <StackLayout Grid.Row="2" Grid.Column="1">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Sábado:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoSabadoText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoSabado}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+                                                    <!--DOMINGO-->
+                                                    <StackLayout Grid.Row="3" Grid.Column="0">
+                                                        <Label
+                                                        IsVisible="True"
+                                                        Text="Domingo:"
+                                                        Margin="0,0,0,0"
+                                                        FontSize="15"
+                                                        Style="{StaticResource SimpleLabelStyle}"
+                                                        TextColor="#494949"/>
+
+                                                        <border:SfBorder
+                                                        Margin="0,0,0,0"
+                                                        Padding="12,8"
+                                                        BorderColor="#03479b"
+                                                        Style="{StaticResource DataFormBorderlessEntryBorderStyle}"
+                                                        VerticalOptions="Start">
+
+                                                            <controls:BorderlessEntry
+                                                            x:Name="DescuentoDomingoText"
+                                                            MaxLength="200"
+                                                            Placeholder=""
+                                                            HeightRequest="20"
+                                                            Style="{StaticResource BorderlessEntryStyle}"
+                                                            Text="{Binding DescuentoDomingo}">
+                                                                <Entry.Behaviors>
+                                                                    <behaviour:EntryLineValidationBehaviour IsValid="True" />
+                                                                </Entry.Behaviors>
+                                                            </controls:BorderlessEntry>
+
+                                                        </border:SfBorder>
+                                                    </StackLayout>
+
+                                                </Grid>
+
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ScrollView>
+
+                            </StackLayout>
+
+
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE EDICIÓN DE NOTAS AL PIE-->
+            <StackLayout IsVisible="{Binding VisualizaNotasPie}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+
+                    <StackLayout>
+                        <StackLayout  HorizontalOptions="Fill"  VerticalOptions="CenterAndExpand" Margin="30,0,30,0" Background="white">
+                            <Label
+                                IsVisible="True"
+                                Text="Edita las notas al pie"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                FontSize="16"
+                                Style="{StaticResource SimpleLabelStyle}"
+                                TextColor="Black"/>
+
+                            <StackLayout>
+                                <Editor Text="{Binding NotasPie}" BackgroundColor="white" HeightRequest="150"  x:Name="EditorNotasPie"/>
+                                <Button Text="LISTO" Command="{Binding CerrarNotasPieCommand}" BackgroundColor="#03479b" Margin="4,4,4,4" HeightRequest="40" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE EDICIÓN DE UN CLIENTE-->
+            <StackLayout IsVisible="{Binding EditorClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE COLONIAS-->
+            <StackLayout IsVisible="{Binding ColoniaClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE POBLACIONES-->
+            <StackLayout IsVisible="{Binding PoblacionClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE MUNICIPIOS-->
+            <StackLayout IsVisible="{Binding MunicipioClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE ESTADOS-->
+            <StackLayout IsVisible="{Binding EstadoClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE ZONAS-->
+            <StackLayout IsVisible="{Binding ZonaClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE CATEGORÍAS-->
+            <StackLayout IsVisible="{Binding CategoriaClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame> 
+                </Grid>
+            </StackLayout>
+
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE REGIMENES-->
+            <StackLayout IsVisible="{Binding RegimenClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE FORMAS DE PAGO-->
+            <StackLayout IsVisible="{Binding FormasPagoClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE USOS DE CFDI-->
+            <StackLayout IsVisible="{Binding UsoCFDiClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+                </Grid> 
+            </StackLayout>
+
+            <!--CONTENEDOR DE LA PANTALLA DE SELECCIÓN DE MÉTODOS DE PAGO-->
+            <StackLayout IsVisible="{Binding MetodoPagoClienteVisible}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+ 
+                </Grid>
+            </StackLayout>
+
+            <!--MENSAJE RESULTADO-->
+            <StackLayout IsVisible="{Binding MostrarMensajeResultado}" AbsoluteLayout.LayoutBounds="1, 1, 1, 1"  AbsoluteLayout.LayoutFlags="All" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid VerticalOptions="Fill" HorizontalOptions="Fill" HeightRequest="5000">
+                    <Frame BackgroundColor="#0250b2" Opacity=".7">
+
+                    </Frame>
+                    <StackLayout>
+
+
+                        <StackLayout  HorizontalOptions="Fill"  VerticalOptions="CenterAndExpand" Margin="20,0,20,0">
+
+                            <StackLayout>
+                                <Frame CornerRadius="4" 
+                                HorizontalOptions="Center" 
+                                VerticalOptions="Start"
+                                HasShadow="True"
+                                IsClippedToBounds="True"
+                                Padding="0">
+
+                                    <StackLayout Background="white" Padding="15">
+                                        <StackLayout  WidthRequest="90" HeightRequest="90"  HorizontalOptions="CenterAndExpand">
+                                            <Image Margin="2" Source="{Binding IconoMensaje}" Aspect="AspectFill"/>
+                                        </StackLayout>
+                                        <StackLayout  HorizontalOptions="CenterAndExpand">
+                                            <Label FontSize="22" Text="{Binding TextoMensaje}" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                                        </StackLayout>
+                                        <StackLayout  HorizontalOptions="Center" Orientation="Horizontal" Margin="0,10,0,0">
+
+                                            <Frame CornerRadius="4" HorizontalOptions="Center" VerticalOptions="Start" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                                                <StackLayout Background="#03479b" Padding="10,2,10,2">
+
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_NuevoPedidoRespuesta"/>
+                                                    </StackLayout.GestureRecognizers>
+
+                                                    <Label Text="NUEVO PEDIDO" FontSize="16" TextColor="White" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </Frame>
+
+                                            <Frame CornerRadius="4" HorizontalOptions="Center" VerticalOptions="Start" HasShadow="True" IsClippedToBounds="True" Padding="0">
+                                                <StackLayout Background="#adafba" Padding="10,2,10,2">
+
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_CerrarMensajeRespuesta"/>
+                                                    </StackLayout.GestureRecognizers>
+
+                                                    <Label Text="CERRAR" FontSize="16" TextColor="White" FontAttributes="Bold"/>
+                                                </StackLayout>
+                                            </Frame>
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <!--MENSAJE TOAST-->
+            <StackLayout AbsoluteLayout.LayoutBounds=".5, .8, .9, .05"  AbsoluteLayout.LayoutFlags="All" IsVisible="{Binding ToastVisibles}" >
+
+                <Frame CornerRadius="5" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Start"
+                HasShadow="True"
+                IsClippedToBounds="True"
+                Padding="0">
+                    <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="{Binding ToastColor}" HorizontalOptions="Center">
+                        <Label TextColor="White" FontSize="15" FontAttributes="Bold" VerticalOptions="Center" Padding="5" Text="{Binding ToastText}">
+
+                        </Label>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <!--IS BUSY LAYOUT-->
+            <StackLayout x:Name="overLay" Opacity="0.7"  Background="black" AbsoluteLayout.LayoutBounds="2, 2, 1, 1" Margin="-20,0,-20,-20" AbsoluteLayout.LayoutFlags="All" IsVisible="{Binding BusyOperation}" >
+
+                <StackLayout  HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand">
+
+                    <busyindicator:SfBusyIndicator x:Name="busyIndicator" 
+                                       AnimationType="SingleCircle" 
+                                       TextColor="Green"
+                                       ViewBoxWidth="40"
+                                       ViewBoxHeight="40"/>
+
+                    <Label Text="Espere  un momento..." TextColor="White" FontSize="16" FontAttributes="Bold"/>
+
+                </StackLayout>
+            </StackLayout>
+            <!--IS BUSY LAYOUT-->
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>
