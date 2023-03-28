@@ -37,7 +37,7 @@ namespace PuntoVenta.ViewModel
             return existenciaId;
         }
         //Eliminar por ID
-        public static async Task<int> DeleteExistenciaId(int id = 11)
+        public static async Task<int> DeleteExistenciaId(int id = 5)
         {
             int result = 0;
             var existenciaDeleteId = await App.Database.GetTbaexistencia(id);

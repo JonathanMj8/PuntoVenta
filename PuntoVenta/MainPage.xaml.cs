@@ -47,7 +47,7 @@ namespace PuntoVenta
 
         private void getAlmmovId_Clicked(object sender, EventArgs e)
         {
-          //  _ = Tbaalmmov.GetTbaalmmovId();
+           _ = TbaalmmovViewModel.GetTbaalmmovId();
         }
 
         private void deleteAlmmov_Clicked(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace PuntoVenta
 
         private void insertAlmmovdet_Clicked(object sender, EventArgs e)
         {
-            //_ = Tbaalmmovdet.GuardarTbaalmmovdet();
+            _ = TbaalmmovdetViewModel.GuardarTbaalmmovdet();
         }
 
         private void getAlmmovdetAll_Clicked(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace PuntoVenta
 
         private void getMotivomovId_Clicked(object sender, EventArgs e)
         {
-
+            _ = TbamotivomovViewModel.GetMotivomovId();
         }
 
         private void deleteMotivomov_Clicked(object sender, EventArgs e)

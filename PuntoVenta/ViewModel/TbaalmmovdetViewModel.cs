@@ -254,34 +254,35 @@ namespace PuntoVenta.ViewModel
             await Navigation.PushAsync(new TbaalmmovdetAgregar());
         }
 
-        public async Task GuardarTbaalmmovdet()
+        public static async Task<int> GuardarTbaalmmovdet()
         {
+            int result = 0;
             TBAALMMOVDET modelo = new TBAALMMOVDET()
             {
-                IDALMMOV = IDALMMOV,
-                IDPRODUCTO = IDPRODUCTO,
-                CANTIDAD = CANTIDAD,
-                COSTO = COSTO,
-                IMPORTE = IMPORTE,
-                SUBTOTAL = SUBTOTAL,
-                TOTALIVA = TOTALIVA,
-                IVA = IVA,
-                LOTE = LOTE,
-                FECHACAD = FECHACAD,
-                IDLOTE = IDLOTE,
-                ANTIBIOTICO = ANTIBIOTICO,
-                UMEDIDA = UMEDIDA
-                //KIT = KIT,
-                //EXISTENCIA = (decimal)40.5,
-                //FALTANTE = 1,
-                //SOBRANTE = (decimal)10.5,
-                //IdAplicacion = Guid.NewGuid(),
-                //IEPS = (decimal)10.5,
-                //TOTALIESPS = (decimal)10.5,
-                //COSTOCALC = (decimal)20.5
+                IDALMMOV = 1,
+                IDPRODUCTO = 1,
+                CANTIDAD = 2,
+                COSTO = 14,
+                IMPORTE = 12,
+                SUBTOTAL = 100,
+                TOTALIVA = 12,
+                IVA = 12,
+                LOTE = "A",
+                FECHACAD = DateTime.Now,
+                IDLOTE = 1,
+                ANTIBIOTICO = 1,
+                UMEDIDA = "CM",
+                KIT = 1,
+                EXISTENCIA = (decimal)40.5,
+                FALTANTE = 1,
+                SOBRANTE = (decimal)10.5,
+                IdAplicacion = Guid.NewGuid(),
+                IEPS = (decimal)10.5,
+                TOTALIESPS = (decimal)10.5,
+                COSTOCALC = (decimal)20.5
             };
-            await App.Database.SaveTbaalmmovdet(modelo);
-
+            result = await App.Database.SaveTbaalmmovdet(modelo);
+            return result;
         }
         public static async Task<List<TBAALMMOVDET>> GetTbaalmmovdetAll()
         {

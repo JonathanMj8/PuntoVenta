@@ -121,7 +121,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\PuntoVenta\PuntoVenta.csproj">
       <Project>{6B427606-48C5-4D3E-90E9-C0B27E0FB54F}</Project>

@@ -6,7 +6,12 @@
              xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
              xmlns:behaviour="clr-namespace:PuntoVenta.Behaviors" 
              xmlns:controls="clr-namespace:PuntoVenta.Controls" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" >
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" 
+             xmlns:viewModel="clr-namespace:PuntoVenta.ViewModel"
+             x:Name="VentasPage">
+    
+    
+
 
     <Shell.TitleView>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
@@ -24,7 +29,7 @@
             </StackLayout>
 
             <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Margin="-10,0,0,0">
-                <Label Text="Pedidos"
+                <Label Text="{Binding TextoTitulo}"
                    Margin="0,0,0,0"
                    HorizontalOptions="CenterAndExpand"
                    VerticalOptions="CenterAndExpand"
@@ -192,7 +197,7 @@
 
                                 <syncfusion:SfListView.RightSwipeTemplate>
                                     <DataTemplate x:Name="LeftSwipeTemplate">
-                                        <Grid BackgroundColor="LightGray" HorizontalOptions="Fill" VerticalOptions="Fill">
+                                        <Grid BackgroundColor="{Binding BindingContext.SwipeItemColor, Source={x:Reference Name=VentasPage}}" HorizontalOptions="Fill" VerticalOptions="Fill">
                                             <StackLayout VerticalOptions="Center">
                                                 <Image 
                                     Source="cancelar.png"
@@ -498,71 +503,6 @@
 
                                                     </StackLayout>
                                                 </StackLayout>
-                                                <!--FECHAS DE ENTREGA-->
-                                                <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
-                                                    <Label
-                                                    IsVisible="True"
-                                                    Text="Fecha de Entrega"
-                                                    HorizontalOptions="Start"
-                                                    Margin="0,0,0,0"
-                                                    FontAttributes="Bold"
-                                                    HorizontalTextAlignment="Center"
-                                                    FontSize="14"
-                                                    Style="{StaticResource SimpleLabelStyle}"
-                                                    TextColor="Black"/>
-                                                    <StackLayout  HorizontalOptions="FillAndExpand" HeightRequest="50">
-
-                                                        <Grid HorizontalOptions="FillAndExpand" >
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="45*" />
-                                                                <ColumnDefinition Width="45*" />
-                                                            </Grid.ColumnDefinitions>
-
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="50" />
-                                                            </Grid.RowDefinitions>
-                                                            
-                                                            <StackLayout Grid.Column="0" Grid.Row="0" Margin="0,0,10,0">
-                                                                <Label
-                                                            IsVisible="True"
-                                                            Text="Inicio"
-                                                            Margin="0,0,0,0"
-                                                            FontSize="14"
-                                                            Style="{StaticResource SimpleLabelStyle}"
-                                                            TextColor="Black"/>
-                                                                <border:SfBorder
-                                                                Margin="0,-4,0,0"
-                                                                Padding="-9"
-                                                                BorderColor="#03479b"
-                                                                VerticalOptions="Start">
-                                                                    <DatePicker x:Name="FechaEntregaInicioDatePicker"
-                                                                Format="MM/dd/yyyy"
-                                                                Date="{Binding FechaEntregaInicio, Mode=TwoWay}"        
-                                                                HorizontalOptions="Center"/>
-                                                                </border:SfBorder>
-                                                            </StackLayout>
-                                                            <StackLayout Grid.Column="1" Grid.Row="0" Margin="10,0,0,0">
-                                                                <Label
-                                                            IsVisible="True"
-                                                            Text="Fin"
-                                                            Margin="0,0,0,0"
-                                                            FontSize="14"
-                                                            Style="{StaticResource SimpleLabelStyle}"
-                                                            TextColor="Black"/>
-                                                                 <border:SfBorder
-                                                                Margin="0,-4,0,0"
-                                                                Padding="-9"
-                                                                BorderColor="#03479b"
-                                                                VerticalOptions="Start">
-
-                                                                    <DatePicker x:Name="FechaEntregaFinDatePicker"
-                                                                Format="MM/dd/yyyy"
-                                                                HorizontalOptions="Center"/>
-                                                                 </border:SfBorder>
-                                                             </StackLayout>
-                                                         </Grid>
-                                                     </StackLayout>
-                                                </StackLayout>
                                                <!-- ESTATUS -->
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
@@ -599,11 +539,11 @@
                                                         </border:SfBorder>
                                                     </StackLayout>
                                                 </StackLayout>
-                                                <!--CLIENTE--> 
+                                                <!--SUCURSAL--> 
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
-                                                Text="Cliente"
+                                                Text="SUCURSAL"
                                                 HorizontalOptions="Start"
                                                 Margin="0,0,0,0"
                                                 FontAttributes="Bold"
@@ -621,60 +561,25 @@
                                                             <combobox:SfComboBox HeightRequest="41" 
                                                         x:Name="comboBoxCliente" 
                                                         TextSize="{OnIdiom Tablet=17, Phone=16}" 
-                                                        Watermark="Selecciona Cliente" 
+                                                        Watermark="Selecciona Sucursal" 
                                                         IsEditableMode="true" 
                                                         AllowFiltering="true" 
                                                         SuggestionMode="Contains"
-                                                        DataSource="{Binding ListaClientes}" 
-                                                        DisplayMemberPath="NOMBRECODIGO"  
-                                                        SelectedValuePath="IDCLIENTE" 
-                                                        SelectedValue="{Binding IdCliente, Mode=TwoWay}">
+                                                        DataSource="{Binding ListaSucursal}" 
+                                                        DisplayMemberPath="NOMBRE"  
+                                                        SelectedValuePath="IDSUCURSAL" 
+                                                        SelectedValue="{Binding IDSUCURSAL, Mode=TwoWay}">
 
                                                             </combobox:SfComboBox>
 
                                                         </border:SfBorder>
                                                     </StackLayout>
                                                 </StackLayout>
-                                                <!--METODO DE PAGO-->
+                                                <!--MOTIVO-->
                                                 <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
                                                     <Label
                                                 IsVisible="True"
-                                                Text="Condición de Pago"
-                                                HorizontalOptions="Start"
-                                                Margin="0,0,0,0"
-                                                FontAttributes="Bold"
-                                                HorizontalTextAlignment="Center"
-                                                FontSize="14"
-                                                Style="{StaticResource SimpleLabelStyle}"
-                                                TextColor="Black"/>
-                                                    <StackLayout HorizontalOptions="FillAndExpand">
-                                                        <border:SfBorder
-                                                    Margin="0,0,0,0"
-                                                    Padding="-2"
-                                                    BorderColor="#03479b"
-                                                    VerticalOptions="Start">
-
-                                                            <combobox:SfComboBox HeightRequest="41" 
-                                                        x:Name="comboBoxCondicionPago" 
-                                                        TextSize="{OnIdiom Tablet=17, Phone=16}" 
-                                                        Watermark="Selecciona Condición de Pago" 
-                                                        IsEditableMode="false" 
-                                                        AllowFiltering="False" 
-                                                        DataSource="{Binding ListaCondicionPago}" 
-                                                        DisplayMemberPath="DESCRIPCION"  
-                                                        SelectedValuePath="IDTIPOVENTA"
-                                                        SelectedValue="{Binding IdCondicionPago, Mode=TwoWay}">
-
-                                                            </combobox:SfComboBox>
-
-                                                        </border:SfBorder>
-                                                    </StackLayout>
-                                                </StackLayout>
-                                                <!--VENDEDOR-->
-                                                <StackLayout  HorizontalOptions="FillAndExpand" Margin="10,10,10,0" Orientation="Vertical">
-                                                    <Label
-                                                IsVisible="True"
-                                                Text="Vendedor"
+                                                Text="MOTIVO"
                                                 HorizontalOptions="Start"
                                                 Margin="0,0,0,0"
                                                 FontAttributes="Bold"
@@ -692,14 +597,14 @@
                                                             <combobox:SfComboBox HeightRequest="41" 
                                                         x:Name="comboBoxVendedor" 
                                                         TextSize="{OnIdiom Tablet=17, Phone=16}" 
-                                                        Watermark="Selecciona Vendedor" 
+                                                        Watermark="Selecciona Motivo" 
                                                         IsEditableMode="true" 
                                                         AllowFiltering="true" 
                                                         SuggestionMode="Contains"
-                                                        DataSource="{Binding ListaVendedores}" 
-                                                        DisplayMemberPath="NOMBRE"  
-                                                        SelectedValuePath="IDUSUARIO" 
-                                                        SelectedValue="{Binding IdVendedor, Mode=TwoWay}">
+                                                        DataSource="{Binding ListaSucursal}" 
+                                                        DisplayMemberPath="DESCRIPCION"  
+                                                        SelectedValuePath="IDMOTIVOMOV" 
+                                                        SelectedValue="{Binding IDSUCURSAL, Mode=TwoWay}">
  
                                                             </combobox:SfComboBox> 
                                                         </border:SfBorder>

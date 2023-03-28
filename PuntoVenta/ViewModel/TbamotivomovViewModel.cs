@@ -34,7 +34,7 @@ namespace PuntoVenta.ViewModel
             return idmotivomov;
         }
         //Eliminar por ID
-        public static async Task<int> DeleteMotivomovId(int id = 11)
+        public static async Task<int> DeleteMotivomovId(int id = 8)
         {
             int result = 0;
             var eliminarmotivomov = await App.Database.GetTbamotivomovId(id);

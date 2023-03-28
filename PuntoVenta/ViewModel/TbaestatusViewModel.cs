@@ -59,14 +59,14 @@ namespace PuntoVenta.ViewModel
             return estatusList;
         }
 
-        public static async Task<TBAESTATUS> GetAllEstatusId(int id = 1)
+        public static async Task<TBAESTATUS> GetAllEstatusId(int id = 8)
         {
             TBAESTATUS idestatus = null;
             idestatus = await App.Database.GetTbaestatusId(id);
             return idestatus;
         }
         //Eliminar por ID
-        public static async Task<int> DeleteEstatusId(int id = 6)
+        public static async Task<int> DeleteEstatusId(int id = 10)
         {
             int result = 0;
             var deleteestatusid = await App.Database.GetTbaestatusId(id);
